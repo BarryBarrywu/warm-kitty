@@ -47,9 +47,11 @@ final class ThermalReader {
     private static let diePrefixes = ["tdie", "tp"]
 
     // Die-temperature span observed on Apple Silicon (idle → sustained full load),
-    // mapped onto the chassis temperature a hand feels. Tune per chip if needed;
-    // both ends clamp, so an off-range chip saturates rather than misbehaves.
-    private static let dieLo = 40.0, dieHi = 48.0
+    // mapped onto the chassis temperature a hand feels. The high end is measured
+    // under the Accelerate/AMX load the heating engine actually produces (~51.5°C
+    // plateau on this M2 Max). Tune per chip if needed; both ends clamp, so an
+    // off-range chip saturates rather than misbehaves.
+    private static let dieLo = 40.0, dieHi = 52.0
     private static let bodyLo = 28.0, bodyHi = 45.0
 
     init() {

@@ -5,6 +5,7 @@ import Foundation
 /// when the target is reached (with a max-duration safety cap).
 final class SessionController {
     private let engine = HeatingEngine()
+    private let gpuEngine = GPUHeatingEngine()
     private let reader = ThermalReader()
 
     private var timer: Timer?
@@ -38,6 +39,7 @@ final class SessionController {
         running = true
         startedAt = Date()
         engine.start()
+        gpuEngine.start()
         onRunningChanged?(true)
     }
 
@@ -46,6 +48,7 @@ final class SessionController {
         running = false
         startedAt = nil
         engine.stop()
+        gpuEngine.stop()
         onRunningChanged?(false)
     }
 
@@ -53,6 +56,7 @@ final class SessionController {
     func shutdown() {
         running = false
         engine.stop()
+        gpuEngine.stop()
         timer?.invalidate()
         timer = nil
     }

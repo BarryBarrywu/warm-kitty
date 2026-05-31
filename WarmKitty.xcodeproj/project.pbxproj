@@ -15,6 +15,7 @@
 		C8DD5C2A07786CC9EB03934E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6549A4DE56F0D546B28629 /* main.swift */; };
 		D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */; };
 		D32D324450550662865077C2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAC1F68526529DA47EB82D /* WebView.swift */; };
+		DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */; };
 		F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		8F6549A4DE56F0D546B28629 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		953665894F0A316525B72F43 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Resources/web; sourceTree = SOURCE_ROOT; };
 		B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatingEngine.swift; sourceTree = "<group>"; };
+		C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUHeatingEngine.swift; sourceTree = "<group>"; };
 		CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmKittyApp.swift; sourceTree = "<group>"; };
 		D4500F2209A4EAB48CFB8608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9496F5893E72FFDFE72CF8 /* Bridge.swift */,
+				C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */,
 				B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */,
 				8F6549A4DE56F0D546B28629 /* main.swift */,
 				DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */,
+				DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */,
 				D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */,
 				F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */,
 				7379552B08EEB920296E1DEF /* ThermalReader.swift in Sources */,
