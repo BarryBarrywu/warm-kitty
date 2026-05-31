@@ -1093,6 +1093,9 @@ const FALLBACK_CAT = { body: '#F2B27A', belly: '#FBEAD3', ear: '#F0A39B', line: 
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [lang, setLang] = useLang();
+  const L = STRINGS[lang];
+  const [view, setView] = React.useState('main');
   const [target, setTarget] = React.useState(() => {
     const v = parseInt(localStorage.getItem('wk_target') || '38', 10);
     return isNaN(v) ? 38 : Math.max(TMIN, Math.min(TMAX, v));
@@ -1135,7 +1138,7 @@ function App() {
 
   const cat = FALLBACK_CAT;
 
-  const narr = !heating && state === 'freezing' ? IDLE_HINT : NARRATION[state];
+  const narr = !heating && state === 'freezing' ? L.idleHint : L.narr[state];
 
   const W = 444, H = 626;
 
@@ -1211,7 +1214,7 @@ function App() {
               </div>
               <div style={{
                 fontFamily: "'ZCOOL KuaiLe', system-ui", fontSize: 13, color: isOver ? '#CC3F2C' : '#9A6A45', marginTop: 1, transition: 'color .4s ease',
-              }}>{STATE_LABEL[state]}</div>
+              }}>{L.state[state]}</div>
             </div>
           </div>
 
@@ -1234,7 +1237,7 @@ function App() {
           {/* target slider */}
           <div style={{ width: '100%', marginBottom: 16 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 7 }}>
-              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 13, fontWeight: 600, color: '#8A6446' }}>目标温度</span>
+              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 13, fontWeight: 600, color: '#8A6446' }}>{L.targetTemp}</span>
               <span style={{ fontFamily: "'Baloo 2', system-ui", fontSize: 17, fontWeight: 700, color: '#6E4A33' }}>{target}<span style={{ fontSize: 12 }}>°C</span></span>
             </div>
             <input type="range" min={TMIN} max={TMAX} value={target} step={1}
@@ -1243,7 +1246,7 @@ function App() {
               style={{ '--p': `${(target - TMIN) / (TMAX - TMIN) * 100}%`, '--accent': t.accent }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
               <span style={{ fontFamily: "'Baloo 2'", fontSize: 11, color: '#A98763' }}>{TMIN}°</span>
-              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#A98763' }}>默认 38° · 暖手又安全</span>
+              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#A98763' }}>{L.targetHint}</span>
               <span style={{ fontFamily: "'Baloo 2'", fontSize: 11, color: '#A98763' }}>{TMAX}°</span>
             </div>
           </div>
@@ -1252,14 +1255,14 @@ function App() {
           <button onClick={() => { const next = !heating; setHeating(next); post(next ? { type: 'start', target } : { type: 'stop' }); }} className="wk-btn"
             style={{ '--accent': t.accent, background: heating ? 'transparent' : t.accent, color: heating ? '#9A6A45' : '#fff', borderColor: heating ? 'rgba(154,106,69,0.4)' : 'transparent' }}>
             {heating ? (
-              <><span className="wk-pulse" style={{ background: '#E8824B' }} />停止取暖</>
+              <><span className="wk-pulse" style={{ background: '#E8824B' }} />{L.stop}</>
             ) : (
-              <><FlameIcon />开始取暖</>
+              <><FlameIcon />{L.start}</>
             )}
           </button>
 
           <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#A98763', marginTop: 11, textAlign: 'center' }}>
-            取暖时会耗电、风扇会响 · 到温度自动停 🐾
+            {L.footerHint}
           </div>
 
           {/* overheat warning tint */}
