@@ -12,7 +12,7 @@ final class SessionController {
     private var running = false
     private var target: Double = 80
     private var startedAt: Date?
-    private let maxDuration: TimeInterval = 30 * 60
+    private var maxDuration: TimeInterval = 5 * 60
 
     /// Called ~1 s with the latest real temperature, or nil if unreadable.
     var onTemperature: ((Double?) -> Void)?
@@ -31,6 +31,10 @@ final class SessionController {
 
     func setTarget(_ value: Double) {
         target = value
+    }
+
+    func setMaxMinutes(_ minutes: Double) {
+        maxDuration = max(1, min(15, minutes)) * 60
     }
 
     func start(target: Double) {
