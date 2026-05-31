@@ -923,9 +923,11 @@ window.CatPet = CatPet;
   <script type="text/babel">
 // app.jsx — Warm Kitty main interface + simulated thermal loop.
 
-const AMBIENT = 44;     // idle CPU die temp (°C)
-const POTENTIAL = 99;   // full-load equilibrium the engine drives toward
-const TMIN = 60, TMAX = 95;   // target slider range
+// Chassis "feel" temperature (°C): what the hand senses on the Mac, mapped
+// from the die reading natively. Idle ~28°C, hot-to-the-touch ~45°C.
+const AMBIENT = 28;     // idle felt temperature
+const POTENTIAL = 48;   // full-load equilibrium the sim drives toward (only used in browser preview)
+const TMIN = 30, TMAX = 45;   // target slider range
 
 // ── color helpers ───────────────────────────────────────
 const hex2rgb = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
@@ -935,11 +937,11 @@ const mix = (h1, h2, t) => rgb2hex(lerp(hex2rgb(h1), hex2rgb(h2), t));
 
 // ── thermal → semantics ─────────────────────────────────
 function tempToState(t) {
-  if (t < 50) return 'freezing';
-  if (t < 60) return 'waking';
-  if (t < 72) return 'stretching';
-  if (t < 85) return 'cozy';
-  if (t < 93) return 'toasty';
+  if (t < 31) return 'freezing';
+  if (t < 34) return 'waking';
+  if (t < 37) return 'stretching';
+  if (t < 41) return 'cozy';
+  if (t < 44) return 'toasty';
   return 'overheat';
 }
 const STATE_LABEL = {
@@ -1026,8 +1028,8 @@ const FALLBACK_CAT = { body: '#F2B27A', belly: '#FBEAD3', ear: '#F0A39B', line: 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [target, setTarget] = React.useState(() => {
-    const v = parseInt(localStorage.getItem('wk_target') || '80', 10);
-    return isNaN(v) ? 80 : Math.max(TMIN, Math.min(TMAX, v));
+    const v = parseInt(localStorage.getItem('wk_target') || '38', 10);
+    return isNaN(v) ? 38 : Math.max(TMIN, Math.min(TMAX, v));
   });
   const [temp, setTemp] = React.useState(AMBIENT);
   const [heating, setHeating] = React.useState(false);
@@ -1053,9 +1055,9 @@ function App() {
   }, []);
 
   const state = tempToState(temp);
-  const warmth = Math.max(0, Math.min(1, (temp - AMBIENT) / (95 - AMBIENT)));
-  const frac = Math.max(0, Math.min(1, (temp - AMBIENT) / (95 - AMBIENT)));
-  const targetFrac = (target - AMBIENT) / (95 - AMBIENT);
+  const warmth = Math.max(0, Math.min(1, (temp - AMBIENT) / (TMAX - AMBIENT)));
+  const frac = Math.max(0, Math.min(1, (temp - AMBIENT) / (TMAX - AMBIENT)));
+  const targetFrac = (target - AMBIENT) / (TMAX - AMBIENT);
 
   // dynamic background
   const bgT = t.bgDynamic === 'static' ? 0 : t.bgDynamic === 'subtle' ? warmth * 0.4 : warmth;
@@ -1175,7 +1177,7 @@ function App() {
               style={{ '--p': `${(target - TMIN) / (TMAX - TMIN) * 100}%`, '--accent': t.accent }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
               <span style={{ fontFamily: "'Baloo 2'", fontSize: 11, color: '#A98763' }}>{TMIN}°</span>
-              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#A98763' }}>默认 80° · 明显发热又安全</span>
+              <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#A98763' }}>默认 38° · 暖手又安全</span>
               <span style={{ fontFamily: "'Baloo 2'", fontSize: 11, color: '#A98763' }}>{TMAX}°</span>
             </div>
           </div>

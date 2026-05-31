@@ -3,6 +3,9 @@
 # Design handoff originals (large; not needed to build)
 warm-kitty-design/
 
+# Build product copied into repo root for local testing
+/Warm Kitty.app/
+
 # Xcode
 *.xcodeproj/xcuserdata/
 *.xcodeproj/project.xcworkspace/xcuserdata/
