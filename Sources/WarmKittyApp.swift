@@ -15,6 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let winSize = NSSize(width: 444, height: 626)
     private let titleBarHeight: CGFloat = 46
     private let trafficLightWidth: CGFloat = 72  // leave the HTML traffic lights clickable
+    private let rightControlWidth: CGFloat = 64  // leave the HTML gear / Done button clickable
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         let (web, bridge) = makeWarmKittyWebView(session: session)
@@ -30,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let drag = DragStrip(frame: NSRect(
             x: trafficLightWidth,
             y: winSize.height - titleBarHeight,
-            width: winSize.width - trafficLightWidth,
+            width: winSize.width - trafficLightWidth - rightControlWidth,
             height: titleBarHeight))
         drag.autoresizingMask = [.width, .minYMargin]
         container.addSubview(drag)
