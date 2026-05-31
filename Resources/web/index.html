@@ -1293,7 +1293,6 @@ function App() {
             }} />
           )}
         </div>
-      </div>
 
         {view === 'settings' && (
           <SettingsView L={L} lang={lang} setLang={setLang}
@@ -1301,6 +1300,7 @@ function App() {
             version={version} accent={t.accent} post={post}
             onDone={() => setView('main')} />
         )}
+      </div>
     </div>
   );
 }
