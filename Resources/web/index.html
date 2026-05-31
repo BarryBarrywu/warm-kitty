@@ -1006,8 +1006,28 @@ const STRINGS = {
     protectDesc: 'After you start warming, it auto-stops once this runtime is reached. Even below the target temperature it won\'t keep heating, to protect your Mac.',
     about: 'About', version: 'Version', website: 'Website', github: 'GitHub', sponsor: 'Sponsor us',
   },
+  'ja': {
+    label: '日本語',
+    state: { freezing: 'ぶるぶる', waking: 'おめざめ', stretching: 'のびのび', cozy: 'ぬくぬく', toasty: 'ほっかほか', overheat: 'あつすぎ！' },
+    narr: {
+      freezing: 'うぅ…さむいよぉ、もうちょっとあっためて…',
+      waking: 'んん…あったかくなってきた、そろそろ目をあけよっと…',
+      stretching: 'んー！ぐーんと伸び、すっごく気持ちいい〜',
+      cozy: 'ごろごろ…いれたてのホットココアを抱っこしてるみたい。',
+      toasty: 'あったかい！ほっかほかで、お日さまを浴びてるみたい〜',
+      overheat: 'あっ——あつすぎ！ちょっとあおがせて！',
+    },
+    idleHint: '（下のボタンをおして、あっためてくれる〜？）',
+    targetTemp: '目標温度', targetHint: 'デフォルト 38° · 手があったかくて安全',
+    start: 'あたため開始', stop: 'あたため停止',
+    footerHint: 'あたため中は電力を使い、ファンが回ります · 温度に達すると自動で止まります 🐾',
+    settings: '設定', done: '完了', language: '言語',
+    heatProtection: 'あたため保護', protectTime: '最大稼働時間', minutesUnit: '分',
+    protectDesc: 'あたため開始後、この時間で自動的に停止します。目標温度に届かなくても発熱し続けず、Mac を保護します。',
+    about: 'について', version: 'バージョン', website: 'ウェブサイト', github: 'GitHub', sponsor: '応援する',
+  },
 };
-const LANGS = ['zh-Hans', 'zh-Hant', 'en'];
+const LANGS = ['zh-Hans', 'zh-Hant', 'en', 'ja'];
 
 // ── language persistence ─────────────────────────────────
 function useLang() {
