@@ -1,1 +1,10 @@
 .DS_Store
+
+# Design handoff originals (large; not needed to build)
+warm-kitty-design/
+
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+.build/

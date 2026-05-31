@@ -1,0 +1,29 @@
+name: WarmKitty
+options:
+  bundleIdPrefix: com.barrybarrywu
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+
+targets:
+  WarmKitty:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: Resources/web
+        type: folder
+      - path: Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.barrybarrywu.warmkitty
+        PRODUCT_NAME: Warm Kitty
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        ENABLE_HARDENED_RUNTIME: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_CFBundleDisplayName: Warm Kitty
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSHighResolutionCapable: YES
