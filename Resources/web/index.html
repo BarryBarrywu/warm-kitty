@@ -944,19 +944,85 @@ function tempToState(t) {
   if (t < 44) return 'toasty';
   return 'overheat';
 }
-const STATE_LABEL = {
-  freezing: '瑟瑟发抖', waking: '慢慢苏醒', stretching: '舒展身体',
-  cozy: '满足惬意', toasty: '热乎乎', overheat: '太烫啦',
+// ── i18n: every visible string keyed by language ─────────
+const STRINGS = {
+  'zh-Hans': {
+    label: '简体中文',
+    state: { freezing: '瑟瑟发抖', waking: '慢慢苏醒', stretching: '舒展身体', cozy: '满足惬意', toasty: '热乎乎', overheat: '太烫啦' },
+    narr: {
+      freezing: '呜…好冷，再暖一点点嘛…',
+      waking: '唔…有点暖了，慢慢睁开眼睛…',
+      stretching: '嗯～伸个懒腰，舒服多了～',
+      cozy: '呼噜呼噜…现在像捧着一杯刚泡好的热可可。',
+      toasty: '好暖和！热乎乎的，像晒着大太阳～',
+      overheat: '啊——太烫啦！让我扇扇风！',
+    },
+    idleHint: '（点下面的按钮，帮我暖起来好不好～）',
+    targetTemp: '目标温度', targetHint: '默认 38° · 暖手又安全',
+    start: '开始取暖', stop: '停止取暖',
+    footerHint: '取暖时会耗电、风扇会响 · 到温度自动停 🐾',
+    settings: '设置', done: '完成', language: '语言',
+    heatProtection: '取暖保护', protectTime: '保护时间', minutesUnit: '分钟',
+    protectDesc: '开始取暖后，最多运行此时长即自动停止。即使未达到目标温度，也不会持续发热，保护电脑。',
+    about: '关于', version: '版本', website: '网站', github: 'GitHub', sponsor: '赞助我们',
+  },
+  'zh-Hant': {
+    label: '繁體中文',
+    state: { freezing: '瑟瑟發抖', waking: '慢慢甦醒', stretching: '舒展身體', cozy: '滿足愜意', toasty: '暖呼呼', overheat: '太燙啦' },
+    narr: {
+      freezing: '嗚…好冷，再暖一點點嘛…',
+      waking: '唔…有點暖了，慢慢睜開眼睛…',
+      stretching: '嗯～伸個懶腰，舒服多了～',
+      cozy: '呼嚕呼嚕…現在像捧著一杯剛泡好的熱可可。',
+      toasty: '好暖和！暖呼呼的，像曬著大太陽～',
+      overheat: '啊——太燙啦！讓我搧搧風！',
+    },
+    idleHint: '（點下面的按鈕，幫我暖起來好不好～）',
+    targetTemp: '目標溫度', targetHint: '預設 38° · 暖手又安全',
+    start: '開始取暖', stop: '停止取暖',
+    footerHint: '取暖時會耗電、風扇會響 · 到溫度自動停 🐾',
+    settings: '設定', done: '完成', language: '語言',
+    heatProtection: '取暖保護', protectTime: '保護時間', minutesUnit: '分鐘',
+    protectDesc: '開始取暖後，最多運行此時長即自動停止。即使未達到目標溫度，也不會持續發熱，保護電腦。',
+    about: '關於', version: '版本', website: '網站', github: 'GitHub', sponsor: '贊助我們',
+  },
+  'en': {
+    label: 'English',
+    state: { freezing: 'Shivering', waking: 'Waking up', stretching: 'Stretching', cozy: 'Cozy', toasty: 'Toasty', overheat: 'Too hot!' },
+    narr: {
+      freezing: 'Brrr… so cold, warm me up just a little more…',
+      waking: 'Mmm… getting warmer, slowly opening my eyes…',
+      stretching: 'Ahh~ a good stretch, that feels much better~',
+      cozy: 'Purr purr… cozy as a fresh-poured mug of hot cocoa.',
+      toasty: 'So warm! Toasty all over, like basking in the sun~',
+      overheat: 'Ahh—too hot! Let me fan myself!',
+    },
+    idleHint: '(Tap the button below and help me warm up, please~)',
+    targetTemp: 'Target temp', targetHint: 'Default 38° · warm yet safe',
+    start: 'Start warming', stop: 'Stop warming',
+    footerHint: 'Warming uses power, the fan spins · auto-stops at target 🐾',
+    settings: 'Settings', done: 'Done', language: 'Language',
+    heatProtection: 'Heat protection', protectTime: 'Max runtime', minutesUnit: 'min',
+    protectDesc: 'After you start warming, it auto-stops once this runtime is reached. Even below the target temperature it won\'t keep heating, to protect your Mac.',
+    about: 'About', version: 'Version', website: 'Website', github: 'GitHub', sponsor: 'Sponsor us',
+  },
 };
-const NARRATION = {
-  freezing: '呜…好冷，再暖一点点嘛…',
-  waking: '唔…有点暖了，慢慢睁开眼睛…',
-  stretching: '嗯～伸个懒腰，舒服多了～',
-  cozy: '呼噜呼噜…现在像捧着一杯刚泡好的热可可。',
-  toasty: '好暖和！热乎乎的，像晒着大太阳～',
-  overheat: '啊——太烫啦！让我扇扇风！',
-};
-const IDLE_HINT = '（点下面的按钮，帮我暖起来好不好～）';
+const LANGS = ['zh-Hans', 'zh-Hant', 'en'];
+
+// ── language persistence ─────────────────────────────────
+function useLang() {
+  const [lang, setLangState] = React.useState(() => {
+    const v = localStorage.getItem('wk_lang');
+    return STRINGS[v] ? v : 'zh-Hans';
+  });
+  const setLang = (v) => { localStorage.setItem('wk_lang', v); setLangState(v); };
+  return [lang, setLang];
+}
+
+// ── external-link + version constants ────────────────────
+const SPONSOR_URL = 'https://sponsor.barrybarrywu.com';
+const WEBSITE_URL = 'https://barrybarrywu.com';
+const GITHUB_URL = 'https://github.com/BarryBarrywu';
 
 // ── geometry: gauge arc ─────────────────────────────────
 function polar(cx, cy, r, deg) {
