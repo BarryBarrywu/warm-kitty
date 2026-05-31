@@ -30,6 +30,8 @@ final class Bridge: NSObject, WKScriptMessageHandler {
 
         switch type {
         case "ready":
+            let v = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+            eval("window.warmkitty && warmkitty.onVersion('\(v)')")
             session.begin()
         case "start":
             let target = (body["target"] as? NSNumber)?.doubleValue ?? 80
@@ -38,6 +40,10 @@ final class Bridge: NSObject, WKScriptMessageHandler {
             session.stop()
         case "setTarget":
             if let v = (body["value"] as? NSNumber)?.doubleValue { session.setTarget(v) }
+        case "setMaxMinutes":
+            if let v = (body["value"] as? NSNumber)?.doubleValue { session.setMaxMinutes(v) }
+        case "openURL":
+            if let s = body["url"] as? String, let url = URL(string: s) { NSWorkspace.shared.open(url) }
         case "window":
             handleWindow(body["action"] as? String)
         default:
