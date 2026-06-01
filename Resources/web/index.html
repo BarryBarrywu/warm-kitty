@@ -961,6 +961,10 @@ const STRINGS = {
     targetTemp: '目标温度', targetHint: '默认 38° · 暖手又安全',
     start: '开始取暖', stop: '停止取暖',
     footerHint: '取暖时会耗电、风扇会响 · 到温度自动停 🐾',
+    heatingHint: '暖炉正在工作，电脑变慢属正常',
+    tipTitle: '取暖已开始',
+    tipBody: '暖炉正在努力工作，电脑可能会变慢一点——不用担心，去倒杯热饮等它暖好吧～',
+    tipOk: '明白了',
     settings: '设置', done: '完成', language: '语言',
     heatProtection: '取暖保护', protectTime: '保护时间', minutesUnit: '分钟',
     protectDesc: '开始取暖后，最多运行此时长即自动停止。即使未达到目标温度，也不会持续发热，保护电脑。',
@@ -981,6 +985,10 @@ const STRINGS = {
     targetTemp: '目標溫度', targetHint: '預設 38° · 暖手又安全',
     start: '開始取暖', stop: '停止取暖',
     footerHint: '取暖時會耗電、風扇會響 · 到溫度自動停 🐾',
+    heatingHint: '暖爐正在工作，電腦變慢屬正常',
+    tipTitle: '取暖已開始',
+    tipBody: '暖爐正在努力工作，電腦可能會變慢一點——別擔心，去倒杯熱飲等它暖好吧～',
+    tipOk: '明白了',
     settings: '設定', done: '完成', language: '語言',
     heatProtection: '取暖保護', protectTime: '保護時間', minutesUnit: '分鐘',
     protectDesc: '開始取暖後，最多運行此時長即自動停止。即使未達到目標溫度，也不會持續發熱，保護電腦。',
@@ -1001,6 +1009,10 @@ const STRINGS = {
     targetTemp: 'Target temp', targetHint: 'Default 38° · warm yet safe',
     start: 'Start warming', stop: 'Stop warming',
     footerHint: 'Warming uses power, the fan spins · auto-stops at target 🐾',
+    heatingHint: 'Heater running · slight slowdown is normal',
+    tipTitle: 'Warming started',
+    tipBody: 'The heater is working hard — your Mac may slow down a bit. Totally normal! Go grab a warm drink~',
+    tipOk: 'Got it',
     settings: 'Settings', done: 'Done', language: 'Language',
     heatProtection: 'Heat protection', protectTime: 'Max runtime', minutesUnit: 'min',
     protectDesc: 'After you start warming, it auto-stops once this runtime is reached. Even below the target temperature it won\'t keep heating, to protect your Mac.',
@@ -1021,6 +1033,10 @@ const STRINGS = {
     targetTemp: '目標温度', targetHint: 'デフォルト 38° · 手があったかくて安全',
     start: 'あたため開始', stop: 'あたため停止',
     footerHint: 'あたため中は電力を使い、ファンが回ります · 温度に達すると自動で止まります 🐾',
+    heatingHint: '暖炉が動いています · 少し重くなるのは正常です',
+    tipTitle: 'あたため中です',
+    tipBody: '暖炉が一生懸命動いています——Macが少し重くなるかも。大丈夫！温かい飲み物でも飲んできて～',
+    tipOk: 'わかった',
     settings: '設定', done: '完了', language: '言語',
     heatProtection: 'あたため保護', protectTime: '最大稼働時間', minutesUnit: '分',
     protectDesc: 'あたため開始後、この時間で自動的に停止します。目標温度に届かなくても発熱し続けず、Mac を保護します。',
@@ -1130,6 +1146,7 @@ function App() {
   const [ding, setDing] = React.useState(0);
   const [known, setKnown] = React.useState(true);
   const [version, setVersion] = React.useState('');
+  const [showTip, setShowTip] = React.useState(false);
   const [maxMinutes, setMaxMinutesState] = React.useState(() => {
     const v = parseInt(localStorage.getItem('wk_maxMinutes') || '5', 10);
     return isNaN(v) ? 5 : Math.max(1, Math.min(15, v));
@@ -1292,7 +1309,12 @@ function App() {
           </div>
 
           {/* start / stop */}
-          <button onClick={() => { const next = !heating; setHeating(next); post(next ? { type: 'start', target } : { type: 'stop' }); }} className="wk-btn"
+          <button onClick={() => {
+            const next = !heating;
+            setHeating(next);
+            post(next ? { type: 'start', target } : { type: 'stop' });
+            if (next && !localStorage.getItem('wk_seenTip')) setShowTip(true);
+          }} className="wk-btn"
             style={{ '--accent': t.accent, background: heating ? 'transparent' : t.accent, color: heating ? '#9A6A45' : '#fff', borderColor: heating ? 'rgba(154,106,69,0.4)' : 'transparent' }}>
             {heating ? (
               <><span className="wk-pulse" style={{ background: '#E8824B' }} />{L.stop}</>
@@ -1305,6 +1327,15 @@ function App() {
             {L.footerHint}
           </div>
 
+          {heating && (
+            <div style={{
+              fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: '#C4855A',
+              marginTop: 5, textAlign: 'center', animation: 'wk-fade .4s ease',
+            }}>
+              {L.heatingHint}
+            </div>
+          )}
+
           {/* overheat warning tint */}
           {isOver && (
             <div className="wk-warn" style={{
@@ -1314,12 +1345,52 @@ function App() {
           )}
         </div>
 
+        {showTip && (
+          <FirstTimeTip L={L} onDismiss={() => { localStorage.setItem('wk_seenTip', '1'); setShowTip(false); }} />
+        )}
+
         {view === 'settings' && (
           <SettingsView L={L} lang={lang} setLang={setLang}
             maxMinutes={maxMinutes} setMaxMinutes={setMaxMinutes}
             version={version} accent={t.accent} post={post}
             onDone={() => setView('main')} />
         )}
+      </div>
+    </div>
+  );
+}
+
+function FirstTimeTip({ L, onDismiss }) {
+  return (
+    <div style={{
+      position: 'absolute', inset: 0, zIndex: 20, borderRadius: 18,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: 'rgba(251,230,195,0.88)',
+      backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+      animation: 'wk-fade .3s ease',
+    }}>
+      <div style={{
+        background: 'rgba(255,255,255,0.94)',
+        borderRadius: 18, padding: '28px 30px 24px',
+        textAlign: 'center', maxWidth: 310,
+        boxShadow: '0 6px 28px rgba(110,74,51,0.16)',
+        border: '0.5px solid rgba(255,255,255,0.8)',
+      }}>
+        <div style={{ fontSize: 36, marginBottom: 12, lineHeight: 1 }}>♨️</div>
+        <p style={{
+          margin: '0 0 10px', fontFamily: "'ZCOOL KuaiLe', 'PingFang SC', system-ui",
+          fontSize: 18, color: '#6E4A33', fontWeight: 600,
+        }}>{L.tipTitle}</p>
+        <p style={{
+          margin: '0 0 22px', fontFamily: "'PingFang SC', system-ui",
+          fontSize: 14, color: '#8A6446', lineHeight: 1.65,
+        }}>{L.tipBody}</p>
+        <button onClick={onDismiss} style={{
+          background: '#E8824B', color: '#fff', border: 'none',
+          borderRadius: 10, padding: '10px 30px',
+          fontFamily: "'ZCOOL KuaiLe', 'PingFang SC', system-ui", fontSize: 16,
+          cursor: 'pointer', letterSpacing: '0.02em',
+        }}>{L.tipOk}</button>
       </div>
     </div>
   );
