@@ -15,6 +15,10 @@ laptop's own waste heat does the rest.
 &nbsp;
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
+<br/>
+
+<img src="images/screenshot.png" width="360" alt="Warm Kitty screenshot" />
+
 </div>
 
 Cold hands at the desk in winter? Your Mac already has a high-end space heater
