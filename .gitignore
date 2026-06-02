@@ -6,6 +6,13 @@ warm-kitty-design/
 # Build product copied into repo root for local testing
 /Warm Kitty.app/
 
+# Distribution artifact + local build output
+WarmKitty.dmg
+build/
+
+# Planning docs (process notes, not shipped)
+docs/superpowers/
+
 # Xcode
 *.xcodeproj/xcuserdata/
 *.xcodeproj/project.xcworkspace/xcuserdata/
