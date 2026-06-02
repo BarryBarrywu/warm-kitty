@@ -7,7 +7,7 @@
 **Turn your MacBook into a hand warmer.** One tap, a sleepy ginger cat, and your
 laptop's own waste heat does the rest.
 
-[![Download for Mac](https://img.shields.io/badge/Download-for%20Mac-E8853A?style=for-the-badge)](https://github.com/BarryBarrywu/warm-kitty/releases/latest)
+[![Download for Mac](https://img.shields.io/badge/Download-for%20Mac-E8853A)](https://github.com/BarryBarrywu/warm-kitty/releases/latest)
 &nbsp;
 [![Website](https://img.shields.io/badge/Website-warmkitty.barrybarrywu.com-E8853A)](https://warmkitty.barrybarrywu.com)
 &nbsp;
@@ -117,8 +117,6 @@ download the latest `.dmg` straight from the
 [**Releases**](https://github.com/BarryBarrywu/warm-kitty/releases/latest) page,
 open it, and drag **Warm Kitty** into Applications. macOS 13+.
 
-The app isn't notarized yet, so on first launch use **right-click → Open** (or allow
-it under *System Settings → Privacy & Security*).
 
 ## Build from source
 
