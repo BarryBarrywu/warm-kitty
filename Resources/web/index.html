@@ -101,7 +101,7 @@ const WK_LANGS = [
 const WK_I18N = {
   zh: {
     title: 'Warm Kitty',
-    slogan: 'Warm Kitty, warm laptop, warm you.',
+    slogan: '你的 MacBook，比你男朋友的手还暖。',
     duration: '暖手时长',
     minuteUnit: '分钟',
     standbyPrompt: '想暖多久？',
@@ -139,7 +139,7 @@ const WK_I18N = {
   },
   en: {
     title: 'Warm Kitty',
-    slogan: 'Warm Kitty, warm laptop, warm you.',
+    slogan: "Your MacBook, warmer than your boyfriend's hands.",
     duration: 'Warming time',
     minuteUnit: 'min',
     standbyPrompt: 'How long?',
@@ -177,7 +177,7 @@ const WK_I18N = {
   },
   ja: {
     title: 'Warm Kitty',
-    slogan: 'Warm Kitty, warm laptop, warm you.',
+    slogan: 'あなたのMacBook、彼氏の手よりあったかい。',
     duration: '暖め時間',
     minuteUnit: '分',
     standbyPrompt: 'どのくらい暖める？',
@@ -215,7 +215,7 @@ const WK_I18N = {
   },
   'zh-Hant': {
     title: 'Warm Kitty',
-    slogan: 'Warm Kitty, warm laptop, warm you.',
+    slogan: '你的 MacBook，比你男朋友的手還暖。',
     duration: '暖手時長',
     minuteUnit: '分鐘',
     standbyPrompt: '想暖多久？',
@@ -517,9 +517,9 @@ function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChim
             <AppIcon size={88} />
             <div style={{ fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: '#5E4630', marginTop: 12 }}>Warm Kitty</div>
             <p style={{
-              margin: '8px 0 0', fontFamily: "'Baloo 2', system-ui", fontStyle: 'italic', fontSize: 15, fontWeight: 500,
+              margin: '8px 0 0', fontFamily: "'Baloo 2', system-ui", fontStyle: lang === 'en' ? 'italic' : 'normal', fontSize: 15, fontWeight: 500,
               color: '#C2703C', lineHeight: 1.4, maxWidth: 240, textWrap: 'balance',
-            }}>"Warm Kitty, warm laptop, warm you."</p>
+            }}>"{T.slogan}"</p>
           </div>
 
           <div style={{ marginTop: 18, borderRadius: 14, background: '#fff', border: '0.5px solid rgba(120,78,40,0.1)', overflow: 'hidden' }}>
