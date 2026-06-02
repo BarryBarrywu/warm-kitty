@@ -9,6 +9,8 @@ laptop's own waste heat does the rest.
 
 [![Download for Mac](https://img.shields.io/badge/Download-for%20Mac-E8853A?style=for-the-badge)](https://github.com/BarryBarrywu/warm-kitty/releases/latest)
 &nbsp;
+[![Website](https://img.shields.io/badge/Website-warmkitty.barrybarrywu.com-E8853A)](https://warmkitty.barrybarrywu.com)
+&nbsp;
 ![Platform](https://img.shields.io/badge/macOS-13%2B-555)
 &nbsp;
 ![License](https://img.shields.io/badge/License-MIT-blue)
@@ -110,7 +112,8 @@ the rough edges:
 
 ## Install
 
-Download the latest `.dmg` from the
+Get it from [**warmkitty.barrybarrywu.com**](https://warmkitty.barrybarrywu.com), or
+download the latest `.dmg` straight from the
 [**Releases**](https://github.com/BarryBarrywu/warm-kitty/releases/latest) page,
 open it, and drag **Warm Kitty** into Applications. macOS 13+.
 
