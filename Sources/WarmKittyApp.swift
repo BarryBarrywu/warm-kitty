@@ -12,7 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let session = SessionController()
     private var bridge: Bridge?
 
-    private let winSize = NSSize(width: 444, height: 626)
+    private let winSize = NSSize(width: 444, height: 690)
     private let titleBarHeight: CGFloat = 46
     private let trafficLightWidth: CGFloat = 72  // leave the HTML traffic lights clickable
     private let rightControlWidth: CGFloat = 64  // leave the HTML gear / Done button clickable

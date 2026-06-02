@@ -18,7 +18,7 @@ func makeWarmKittyWebView(session: SessionController) -> (WKWebView, Bridge) {
     let config = WKWebViewConfiguration()
     config.userContentController.add(bridge, name: "bridge")
 
-    let web = WKWebView(frame: NSRect(x: 0, y: 0, width: 444, height: 626), configuration: config)
+    let web = WKWebView(frame: NSRect(x: 0, y: 0, width: 444, height: 690), configuration: config)
     web.setValue(false, forKey: "drawsBackground") // transparent background
     web.wantsLayer = true
     web.layer?.cornerRadius = 18

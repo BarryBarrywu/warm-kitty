@@ -2,8 +2,8 @@ import AppKit
 import WebKit
 
 /// Connects the web UI and the native session: forwards page actions
-/// (start/stop/target/window) to the SessionController, and pushes real
-/// temperature + running state back into the page.
+/// (start/stop/window/openURL) to the SessionController, and pushes the
+/// countdown tick, running state, and done event back into the page.
 final class Bridge: NSObject, WKScriptMessageHandler {
     private let session: SessionController
     weak var webView: WKWebView?
@@ -12,15 +12,14 @@ final class Bridge: NSObject, WKScriptMessageHandler {
         self.session = session
         super.init()
 
-        session.onTemperature = { [weak self] temp in
-            let arg = temp.map { String(format: "%.1f", $0) } ?? "null"
-            self?.eval("window.warmkitty && warmkitty.onTemp(\(arg))")
+        session.onTick = { [weak self] remaining, total in
+            self?.eval("window.warmkitty && warmkitty.onTick(\(remaining), \(total))")
         }
         session.onRunningChanged = { [weak self] running in
             self?.eval("window.warmkitty && warmkitty.onRunning(\(running))")
         }
-        session.onReachedTarget = { [weak self] in
-            self?.eval("window.warmkitty && warmkitty.onDing()")
+        session.onDone = { [weak self] in
+            self?.eval("window.warmkitty && warmkitty.onDone()")
         }
     }
 
@@ -32,16 +31,11 @@ final class Bridge: NSObject, WKScriptMessageHandler {
         case "ready":
             let v = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
             eval("window.warmkitty && warmkitty.onVersion('\(v)')")
-            session.begin()
         case "start":
-            let target = (body["target"] as? NSNumber)?.doubleValue ?? 80
-            session.start(target: target)
+            let minutes = (body["minutes"] as? NSNumber)?.intValue ?? 5
+            session.start(minutes: minutes)
         case "stop":
             session.stop()
-        case "setTarget":
-            if let v = (body["value"] as? NSNumber)?.doubleValue { session.setTarget(v) }
-        case "setMaxMinutes":
-            if let v = (body["value"] as? NSNumber)?.doubleValue { session.setMaxMinutes(v) }
         case "openURL":
             if let s = body["url"] as? String, let url = URL(string: s) { NSWorkspace.shared.open(url) }
         case "window":

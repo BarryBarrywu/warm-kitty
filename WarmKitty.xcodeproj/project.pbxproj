@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7379552B08EEB920296E1DEF /* ThermalReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A158E256631FD4E7356D52 /* ThermalReader.swift */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
 		A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4500F2209A4EAB48CFB8608 /* Assets.xcassets */; };
 		B2B1EC9E5A078A0703E0592E /* web in Resources */ = {isa = PBXBuildFile; fileRef = 953665894F0A316525B72F43 /* web */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3F9496F5893E72FFDFE72CF8 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
-		40A158E256631FD4E7356D52 /* ThermalReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalReader.swift; sourceTree = "<group>"; };
 		865B0FD4040D8C6A5D217A66 /* WarmKitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarmKitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6549A4DE56F0D546B28629 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		953665894F0A316525B72F43 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Resources/web; sourceTree = SOURCE_ROOT; };
@@ -68,7 +66,6 @@
 				B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */,
 				8F6549A4DE56F0D546B28629 /* main.swift */,
 				DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */,
-				40A158E256631FD4E7356D52 /* ThermalReader.swift */,
 				CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */,
 				2EFAC1F68526529DA47EB82D /* WebView.swift */,
 			);
@@ -147,7 +144,6 @@
 				DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */,
 				D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */,
 				F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */,
-				7379552B08EEB920296E1DEF /* ThermalReader.swift in Sources */,
 				7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */,
 				D32D324450550662865077C2 /* WebView.swift in Sources */,
 				C8DD5C2A07786CC9EB03934E /* main.swift in Sources */,
