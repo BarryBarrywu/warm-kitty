@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Warm Kitty</title>
+        <item>
+            <title>1.1.1</title>
+            <pubDate>Wed, 03 Jun 2026 16:52:30 +0800</pubDate>
+            <link>https://github.com/BarryBarrywu/warm-kitty/releases/tag/v1.1.1</link>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description>&lt;h2 id="whats-new-in-1.1.1"&gt;What’s new in 1.1.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Background sound now behaves correctly: turning it on or off while
+warming takes effect right away, and it no longer goes quiet when you
+stop and start again quickly.&lt;/li&gt;
+&lt;li&gt;The “open at login” setting stays on reliably, and now points you to
+System Settings when macOS needs your approval.&lt;/li&gt;
+&lt;li&gt;The kitty’s poses change steadily throughout a warming session.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+            <enclosure url="https://github.com/BarryBarrywu/warm-kitty/releases/download/v1.1.1/WarmKitty-1.1.1.zip" length="7722970" type="application/octet-stream" sparkle:edSignature="B6Qy0nLw8M18016w90VoGV52CzmFWU3m9/DocgnM7Xt3Yu8qoU4cw/R6wr1GKkWHI/6wrmVOYtUYOnfvwI4TDA==" />
+        <description xml:lang="zh-Hans">&lt;h2 id="更新内容"&gt;1.1.1 更新内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;背景声音现在更可靠：取暖过程中开关声音会立即生效，连续停止再开始也不会变得没声音。&lt;/li&gt;
+&lt;li&gt;「开机时打开」设置不再自动弹回；当系统需要你确认时，会带你去系统设置完成授权。&lt;/li&gt;
+&lt;li&gt;取暖过程中，猫咪的姿势会持续平稳地变化。&lt;/li&gt;
+&lt;/ul&gt;
+</description><description xml:lang="zh-Hant">&lt;h2 id="更新內容"&gt;1.1.1 更新內容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;背景聲音現在更可靠：取暖過程中開關聲音會立即生效，連續停止再開始也不會變得沒聲音。&lt;/li&gt;
+&lt;li&gt;「開機時開啟」設定不再自動彈回；當系統需要你確認時，會帶你去系統設定完成授權。&lt;/li&gt;
+&lt;li&gt;取暖過程中，貓咪的姿勢會持續平穩地變化。&lt;/li&gt;
+&lt;/ul&gt;
+</description><description xml:lang="ja">&lt;h2 id="の新機能"&gt;1.1.1 の新機能&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;バックグラウンドの音がより確実に動作：温め中に音をオン・オフするとすぐに反映され、すばやく停止して再開しても音が消えなくなりました。&lt;/li&gt;
+&lt;li&gt;「ログイン時に開く」設定が確実にオンのままになり、macOS
+の承認が必要なときはシステム設定へ案内します。&lt;/li&gt;
+&lt;li&gt;温めている間、猫の姿勢が安定して変化し続けます。&lt;/li&gt;
+&lt;/ul&gt;
+</description></item>
+    </channel>
+</rss>
