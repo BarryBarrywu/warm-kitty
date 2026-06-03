@@ -18,3 +18,6 @@ docs/superpowers/
 *.xcodeproj/project.xcworkspace/xcuserdata/
 DerivedData/
 .build/
+
+# Sparkle CLI tools (re-download via release.sh instructions)
+.sparkle-tools/
