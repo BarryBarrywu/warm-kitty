@@ -10,6 +10,7 @@
 		20885005DCF8F2738FF0311F /* SessionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */; };
 		2D1102E2465B540300CD16FA /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF6B453FF16D16AACF716C /* SettingsStore.swift */; };
 		2D64B8D4EB0F951F30A30A08 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069B403D58F0E87683C34DB /* LocaleManager.swift */; };
+		68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1255EE8558F99F02738D8 /* AudioController.swift */; };
 		6E47655F8F30C4F6972399FA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AAE93A1A7AEF4586D772E390 /* Fonts */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
 		7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */; };
@@ -58,6 +59,7 @@
 		D4500F2209A4EAB48CFB8608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		E226C3250B40C44E83B73DE5 /* WarmKittyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarmKittyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2D1255EE8558F99F02738D8 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		FDF05A95E6E3C75B6051166B /* LocaleManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		E969236EF0921552EBC18F58 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F2D1255EE8558F99F02738D8 /* AudioController.swift */,
 				3F9496F5893E72FFDFE72CF8 /* Bridge.swift */,
 				C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */,
 				B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */,
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */,
 				C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */,
 				DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */,
 				D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */,
