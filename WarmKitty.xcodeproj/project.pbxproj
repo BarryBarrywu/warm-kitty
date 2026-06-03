@@ -24,12 +24,10 @@
 		9372668DD462BFDECDBBDC4A /* SettingsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E127DFB00040416D3F8BADB /* SettingsStoreTests.swift */; };
 		A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4500F2209A4EAB48CFB8608 /* Assets.xcassets */; };
 		AF294E377D90AE538C40891F /* SettingRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C03B00AF72F47E52C44AD4E /* SettingRows.swift */; };
-		C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9496F5893E72FFDFE72CF8 /* Bridge.swift */; };
 		C8DD5C2A07786CC9EB03934E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6549A4DE56F0D546B28629 /* main.swift */; };
 		CD089255C30B4FFAA3AAD7FF /* FirstRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB29954B4C5EFECF67212C /* FirstRunView.swift */; };
 		D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */; };
 		D25196B0235FF707D763EFC0 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B47441814FCFF71FCBB6 /* Color+Hex.swift */; };
-		D32D324450550662865077C2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAC1F68526529DA47EB82D /* WebView.swift */; };
 		D506E758EB3D51C59F21C8F5 /* LocaleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF05A95E6E3C75B6051166B /* LocaleManagerTests.swift */; };
 		DDA524C36BF4001E3832DB2F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0359B65EDA91F3A26801F64B /* Localization.swift */; };
 		DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */; };
@@ -54,9 +52,7 @@
 		1C03B00AF72F47E52C44AD4E /* SettingRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRows.swift; sourceTree = "<group>"; };
 		2972B47441814FCFF71FCBB6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
-		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3577C932323C71CDD66E9C71 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = Resources/Audio; sourceTree = SOURCE_ROOT; };
-		3F9496F5893E72FFDFE72CF8 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		43BB29954B4C5EFECF67212C /* FirstRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunView.swift; sourceTree = "<group>"; };
 		5912A977B67362C98BBB543B /* ReadoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutView.swift; sourceTree = "<group>"; };
 		7069B403D58F0E87683C34DB /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
@@ -152,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				F2D1255EE8558F99F02738D8 /* AudioController.swift */,
-				3F9496F5893E72FFDFE72CF8 /* Bridge.swift */,
 				2972B47441814FCFF71FCBB6 /* Color+Hex.swift */,
 				C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */,
 				B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */,
@@ -163,7 +158,6 @@
 				C7EF6B453FF16D16AACF716C /* SettingsStore.swift */,
 				7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */,
 				CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */,
-				2EFAC1F68526529DA47EB82D /* WebView.swift */,
 				90E263C20DC4D84D607F0BFA /* UI */,
 			);
 			path = Sources;
@@ -264,7 +258,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */,
-				C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */,
 				59DEF86E9B1F10AD4CF0A70F /* CatStageView.swift in Sources */,
 				D25196B0235FF707D763EFC0 /* Color+Hex.swift in Sources */,
 				CD089255C30B4FFAA3AAD7FF /* FirstRunView.swift in Sources */,
@@ -281,7 +274,6 @@
 				7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */,
 				7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */,
 				040807544E81B18BBFD869CD /* WarmSliderView.swift in Sources */,
-				D32D324450550662865077C2 /* WebView.swift in Sources */,
 				C8DD5C2A07786CC9EB03934E /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

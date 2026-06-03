@@ -66,10 +66,7 @@ SPARKLE_BIN="$PROJECT_ROOT/.sparkle-tools/bin"
 [ -x "$SPARKLE_BIN/generate_appcast" ] || {
   echo "Sparkle tools missing. Re-vendor .sparkle-tools/ (see plan Task 1)." >&2; exit 1; }
 
-# ---------- 3. Build web + app ----------
-echo "==> Build web bundle"
-./build-web.sh
-
+# ---------- 3. Build app ----------
 rm -rf "$BUILD_DIR"; mkdir -p "$BUILD_DIR"
 
 echo "==> Archive"
