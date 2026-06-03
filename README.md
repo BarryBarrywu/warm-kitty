@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Resources/web/images/app-icon.png" width="128" alt="Warm Kitty" />
+<img src="images/app-icon.png" width="128" alt="Warm Kitty" />
 
 # Warm Kitty
 
