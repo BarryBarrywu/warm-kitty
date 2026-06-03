@@ -10,6 +10,7 @@
 		20885005DCF8F2738FF0311F /* SessionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */; };
 		2D1102E2465B540300CD16FA /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF6B453FF16D16AACF716C /* SettingsStore.swift */; };
 		2D64B8D4EB0F951F30A30A08 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069B403D58F0E87683C34DB /* LocaleManager.swift */; };
+		4320DA54A7471BCA1F3AAE9C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1641608414F10A67166AD1 /* RootView.swift */; };
 		68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1255EE8558F99F02738D8 /* AudioController.swift */; };
 		6E47655F8F30C4F6972399FA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AAE93A1A7AEF4586D772E390 /* Fonts */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
@@ -21,6 +22,7 @@
 		C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9496F5893E72FFDFE72CF8 /* Bridge.swift */; };
 		C8DD5C2A07786CC9EB03934E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6549A4DE56F0D546B28629 /* main.swift */; };
 		D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */; };
+		D25196B0235FF707D763EFC0 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2972B47441814FCFF71FCBB6 /* Color+Hex.swift */; };
 		D32D324450550662865077C2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAC1F68526529DA47EB82D /* WebView.swift */; };
 		D506E758EB3D51C59F21C8F5 /* LocaleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF05A95E6E3C75B6051166B /* LocaleManagerTests.swift */; };
 		DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */; };
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2972B47441814FCFF71FCBB6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
 		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3577C932323C71CDD66E9C71 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = Resources/Audio; sourceTree = SOURCE_ROOT; };
@@ -54,6 +57,7 @@
 		B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatingEngine.swift; sourceTree = "<group>"; };
 		C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUHeatingEngine.swift; sourceTree = "<group>"; };
 		C7EF6B453FF16D16AACF716C /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		CC1641608414F10A67166AD1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmKittyApp.swift; sourceTree = "<group>"; };
 		CED087459D5F4E34C63922A8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D4500F2209A4EAB48CFB8608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +109,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		90E263C20DC4D84D607F0BFA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CC1641608414F10A67166AD1 /* RootView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		DE7741C29FC8686487C2FF2D = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 			children = (
 				F2D1255EE8558F99F02738D8 /* AudioController.swift */,
 				3F9496F5893E72FFDFE72CF8 /* Bridge.swift */,
+				2972B47441814FCFF71FCBB6 /* Color+Hex.swift */,
 				C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */,
 				B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */,
 				7069B403D58F0E87683C34DB /* LocaleManager.swift */,
@@ -130,6 +143,7 @@
 				7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */,
 				CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */,
 				2EFAC1F68526529DA47EB82D /* WebView.swift */,
+				90E263C20DC4D84D607F0BFA /* UI */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -230,9 +244,11 @@
 			files = (
 				68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */,
 				C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */,
+				D25196B0235FF707D763EFC0 /* Color+Hex.swift in Sources */,
 				DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */,
 				D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */,
 				2D64B8D4EB0F951F30A30A08 /* LocaleManager.swift in Sources */,
+				4320DA54A7471BCA1F3AAE9C /* RootView.swift in Sources */,
 				F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */,
 				2D1102E2465B540300CD16FA /* SettingsStore.swift in Sources */,
 				7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */,

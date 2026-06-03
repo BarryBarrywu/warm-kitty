@@ -1,7 +1,6 @@
 import AppKit
-import WebKit
+import SwiftUI
 
-/// Borderless window that can still become key/main so the web UI stays interactive.
 final class KeyableWindow: NSWindow {
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { true }
@@ -10,44 +9,37 @@ final class KeyableWindow: NSWindow {
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var window: NSWindow!
     private let session = SessionController()
-    private var bridge: Bridge?
-    private var updateChecker: UpdateChecker?
+    private let updateChecker = UpdateChecker()
+    private let audio = AudioController()
+    private lazy var settings = SettingsStore()
+    private lazy var locale = LocaleManager(stored: settings.language)
 
     private let winSize = NSSize(width: 444, height: 690)
     private let titleBarHeight: CGFloat = 46
-    private let trafficLightWidth: CGFloat = 72  // leave the HTML traffic lights clickable
-    private let rightControlWidth: CGFloat = 64  // leave the HTML gear / Done button clickable
+    private let trafficLightWidth: CGFloat = 72
+    private let rightControlWidth: CGFloat = 64
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let updateChecker = UpdateChecker()
-        self.updateChecker = updateChecker
-        let (web, bridge) = makeWarmKittyWebView(session: session, updateChecker: updateChecker)
-        self.bridge = bridge
+        let root = RootView(session: session, settings: settings, locale: locale,
+                            updateChecker: updateChecker, audio: audio)
+        let host = NSHostingView(rootView: root)
+        host.frame = NSRect(origin: .zero, size: winSize)
+        host.autoresizingMask = [.width, .height]
 
         let container = NSView(frame: NSRect(origin: .zero, size: winSize))
         container.wantsLayer = true
-        web.frame = container.bounds
-        web.autoresizingMask = [.width, .height]
-        container.addSubview(web)
+        container.addSubview(host)
 
-        // Native drag strip over the title bar, excluding the traffic-light zone.
-        let drag = DragStrip(frame: NSRect(
-            x: trafficLightWidth,
-            y: winSize.height - titleBarHeight,
-            width: winSize.width - trafficLightWidth - rightControlWidth,
-            height: titleBarHeight))
+        let drag = DragStripView(frame: NSRect(
+            x: trafficLightWidth, y: winSize.height - titleBarHeight,
+            width: winSize.width - trafficLightWidth - rightControlWidth, height: titleBarHeight))
         drag.autoresizingMask = [.width, .minYMargin]
         container.addSubview(drag)
 
-        // Titled + full-size-content gives a transparent, button-less window whose
-        // system miniaturize/close still work (a pure .borderless window ignores
-        // miniaturize because the style mask lacks .miniaturizable).
         window = KeyableWindow(
             contentRect: NSRect(origin: .zero, size: winSize),
             styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
-            backing: .buffered,
-            defer: false
-        )
+            backing: .buffered, defer: false)
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
         window.standardWindowButton(.closeButton)?.isHidden = true
@@ -60,13 +52,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentView = container
         window.center()
         window.makeKeyAndOrderFront(nil)
-
         NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+    func applicationWillTerminate(_ notification: Notification) { session.shutdown() }
+}
 
-    func applicationWillTerminate(_ notification: Notification) {
-        session.shutdown()
-    }
+/// The native drag strip over the (button-hidden) title bar.
+final class DragStripView: NSView {
+    override var mouseDownCanMoveWindow: Bool { true }
 }
