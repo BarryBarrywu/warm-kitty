@@ -3,7 +3,7 @@
 # → EdDSA-sign → generate localized appcast → publish to GitHub Releases + Pages.
 #
 # Prereqs (one-time):
-#   xcrun notarytool store-credentials "warmkitty-notary" \
+#   xcrun notarytool store-credentials "notarytool-warmkitty" \
 #     --apple-id <your-apple-id> --team-id RFW398ARA9 --password <app-specific-password>
 #   gh auth login   (account that owns BarryBarrywu/warm-kitty)
 #   ./.sparkle-tools/bin/generate_keys --account warmkitty   (once; public key already in Info.plist)
@@ -25,7 +25,7 @@ BUILD_DIR="$PROJECT_ROOT/build/release"
 ARCHIVE_PATH="$BUILD_DIR/WarmKitty.xcarchive"
 EXPORT_DIR="$BUILD_DIR/export"
 APP_PATH="$EXPORT_DIR/Warm Kitty.app"
-KEYCHAIN_PROFILE="warmkitty-notary"
+KEYCHAIN_PROFILE="notarytool-warmkitty"
 SIGN_IDENTITY="Developer ID Application: BaoLin Wu (RFW398ARA9)"
 GH_REPO="BarryBarrywu/warm-kitty"
 SPARKLE_ACCOUNT="warmkitty"
