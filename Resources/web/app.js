@@ -5,11 +5,18 @@ const post = (msg) => {
   }
 };
 const WK_LANGS = [
+  ["auto", "\u81EA\u52A8"],
   ["zh", "\u4E2D"],
   ["en", "EN"],
   ["ja", "\u65E5"],
   ["zh-Hant", "\u7E41"]
 ];
+function resolveLang() {
+  const l = (navigator.language || "en").toLowerCase();
+  if (l.startsWith("zh")) return /hant|tw|hk|mo/.test(l) ? "zh-Hant" : "zh";
+  if (l.startsWith("ja")) return "ja";
+  return "en";
+}
 const WK_I18N = {
   zh: {
     title: "Warm Kitty",
@@ -26,6 +33,7 @@ const WK_I18N = {
     footnote: "\u6696\u624B\u65F6\u7535\u8111\u4F1A\u53D1\u70ED\u3001\u98CE\u6247\u4F1A\u8F6C \xB7 \u5230\u70B9\u81EA\u52A8\u505C \u{1F43E}",
     settings: "\u8BBE\u7F6E",
     language: "\u8BED\u8A00",
+    autoLang: "\u81EA\u52A8",
     about: "\u5173\u4E8E",
     version: "\u7248\u672C",
     website: "\u7F51\u7AD9",
@@ -68,6 +76,7 @@ const WK_I18N = {
     footnote: "Warms the laptop & spins the fan \xB7 auto-stops at zero \u{1F43E}",
     settings: "Settings",
     language: "Language",
+    autoLang: "Auto",
     about: "About",
     version: "Version",
     website: "Website",
@@ -110,6 +119,7 @@ const WK_I18N = {
     footnote: "PC\u304C\u767A\u71B1\u3057\u30D5\u30A1\u30F3\u304C\u56DE\u308A\u307E\u3059 \xB7 0\u306B\u306A\u308B\u3068\u81EA\u52D5\u505C\u6B62 \u{1F43E}",
     settings: "\u8A2D\u5B9A",
     language: "\u8A00\u8A9E",
+    autoLang: "\u81EA\u52D5",
     about: "\u30A2\u30D7\u30EA\u306B\u3064\u3044\u3066",
     version: "\u30D0\u30FC\u30B8\u30E7\u30F3",
     website: "\u30A6\u30A7\u30D6\u30B5\u30A4\u30C8",
@@ -152,6 +162,7 @@ const WK_I18N = {
     footnote: "\u53D6\u6696\u6642\u96FB\u8166\u6703\u767C\u71B1\u3001\u98A8\u6247\u6703\u8F49 \xB7 \u5230\u9EDE\u81EA\u52D5\u505C \u{1F43E}",
     settings: "\u8A2D\u5B9A",
     language: "\u8A9E\u8A00",
+    autoLang: "\u81EA\u52D5",
     about: "\u95DC\u65BC",
     version: "\u7248\u672C",
     website: "\u7DB2\u7AD9",
@@ -469,6 +480,7 @@ function SettingsPage({
   open,
   onClose,
   lang,
+  effLang,
   setLang,
   T,
   version,
@@ -536,12 +548,12 @@ function SettingsPage({
     color: "#5E4630",
     outline: "none"
   } }, WK_LANGS.map(([code]) => {
-    const full = { zh: "\u7B80\u4F53\u4E2D\u6587", en: "English", ja: "\u65E5\u672C\u8A9E", "zh-Hant": "\u7E41\u9AD4\u4E2D\u6587" }[code];
+    const full = code === "auto" ? T.autoLang : { zh: "\u7B80\u4F53\u4E2D\u6587", en: "English", ja: "\u65E5\u672C\u8A9E", "zh-Hant": "\u7E41\u9AD4\u4E2D\u6587" }[code];
     return /* @__PURE__ */ React.createElement("option", { key: code, value: code }, full);
-  })), /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", style: { position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" } }, /* @__PURE__ */ React.createElement("path", { d: "M6 9l6 6 6-6", stroke: "#B08A60", strokeWidth: "2.2", strokeLinecap: "round", strokeLinejoin: "round" }))), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.general), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.launchAtLogin, on: launchAtLogin, onChange: setLaunchAtLogin }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.autoUpdate, on: autoUpdate, onChange: setAutoUpdate }), /* @__PURE__ */ React.createElement(ButtonRow, { label: `${T.version} ${version}`, buttonLabel: T.checkNow, onClick: checkUpdates, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.sound), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.chimeOption, on: chime, onChange: setChime }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.ambientOption, on: ambient, onChange: setAmbient, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 14 } }, T.about), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "4px 0 8px" } }, /* @__PURE__ */ React.createElement(AppIcon, { size: 88 }), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: "#5E4630", marginTop: 12 } }, "Warm Kitty"), /* @__PURE__ */ React.createElement("p", { style: {
+  })), /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", style: { position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" } }, /* @__PURE__ */ React.createElement("path", { d: "M6 9l6 6 6-6", stroke: "#B08A60", strokeWidth: "2.2", strokeLinecap: "round", strokeLinejoin: "round" }))), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.sound), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.chimeOption, on: chime, onChange: setChime }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.ambientOption, on: ambient, onChange: setAmbient, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.general), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.launchAtLogin, on: launchAtLogin, onChange: setLaunchAtLogin }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.autoUpdate, on: autoUpdate, onChange: setAutoUpdate }), /* @__PURE__ */ React.createElement(ButtonRow, { label: `${T.version} ${version}`, buttonLabel: T.checkNow, onClick: checkUpdates, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 14 } }, T.about), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "4px 0 8px" } }, /* @__PURE__ */ React.createElement(AppIcon, { size: 88 }), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: "#5E4630", marginTop: 12 } }, "Warm Kitty"), /* @__PURE__ */ React.createElement("p", { style: {
     margin: "8px 0 0",
     fontFamily: "'Baloo 2', system-ui",
-    fontStyle: lang === "en" ? "italic" : "normal",
+    fontStyle: effLang === "en" ? "italic" : "normal",
     fontSize: 15,
     fontWeight: 500,
     color: "#C2703C",
@@ -569,7 +581,7 @@ function App() {
   const [narrIdx, setNarrIdx] = React.useState(0);
   const [lang, setLangState] = React.useState(() => {
     const v = localStorage.getItem("wk_lang");
-    return WK_I18N[v] ? v : "zh";
+    return v === "auto" || WK_I18N[v] ? v : "auto";
   });
   const setLang = (v) => {
     setLangState(v);
@@ -601,7 +613,8 @@ function App() {
   const checkUpdates = () => post({ type: "checkForUpdates" });
   const chimeRef = React.useRef(chime);
   chimeRef.current = chime;
-  const T = WK_I18N[lang] || WK_I18N.zh;
+  const effLang = lang === "auto" ? resolveLang() : lang;
+  const T = WK_I18N[effLang] || WK_I18N.zh;
   React.useEffect(() => {
     localStorage.setItem("wk_minutes", String(minutes));
   }, [minutes]);
@@ -695,6 +708,7 @@ function App() {
       open: settingsOpen,
       onClose: () => setSettingsOpen(false),
       lang,
+      effLang,
       setLang,
       T,
       version,

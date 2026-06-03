@@ -5,11 +5,20 @@ const post = (msg) => { try { window.webkit.messageHandlers.bridge.postMessage(m
 // ─────────────────────────────────────────────────────────────────────────────
 // i18n2 — Warm Kitty (timer pivot) translations: 简体 / English / 日本語 / 繁體
 const WK_LANGS = [
+  ['auto', '自动'],
   ['zh', '中'],
   ['en', 'EN'],
   ['ja', '日'],
   ['zh-Hant', '繁'],
 ];
+
+// 'auto' follows the system language; falls back to English when nothing matches.
+function resolveLang() {
+  const l = (navigator.language || 'en').toLowerCase();
+  if (l.startsWith('zh')) return /hant|tw|hk|mo/.test(l) ? 'zh-Hant' : 'zh';
+  if (l.startsWith('ja')) return 'ja';
+  return 'en';
+}
 
 const WK_I18N = {
   zh: {
@@ -27,6 +36,7 @@ const WK_I18N = {
     footnote: '暖手时电脑会发热、风扇会转 · 到点自动停 🐾',
     settings: '设置',
     language: '语言',
+    autoLang: '自动',
     about: '关于',
     version: '版本',
     website: '网站',
@@ -69,6 +79,7 @@ const WK_I18N = {
     footnote: 'Warms the laptop & spins the fan · auto-stops at zero 🐾',
     settings: 'Settings',
     language: 'Language',
+    autoLang: 'Auto',
     about: 'About',
     version: 'Version',
     website: 'Website',
@@ -111,6 +122,7 @@ const WK_I18N = {
     footnote: 'PCが発熱しファンが回ります · 0になると自動停止 🐾',
     settings: '設定',
     language: '言語',
+    autoLang: '自動',
     about: 'アプリについて',
     version: 'バージョン',
     website: 'ウェブサイト',
@@ -153,6 +165,7 @@ const WK_I18N = {
     footnote: '取暖時電腦會發熱、風扇會轉 · 到點自動停 🐾',
     settings: '設定',
     language: '語言',
+    autoLang: '自動',
     about: '關於',
     version: '版本',
     website: '網站',
@@ -403,7 +416,7 @@ function AppIcon({ size = 88 }) {
   );
 }
 
-function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChime, ambient, setAmbient,
+function SettingsPage({ open, onClose, lang, effLang, setLang, T, version, chime, setChime, ambient, setAmbient,
   launchAtLogin, setLaunchAtLogin, autoUpdate, setAutoUpdate, checkUpdates }) {
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: open ? 'auto' : 'none' }}>
@@ -441,13 +454,20 @@ function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChim
               fontFamily: "'PingFang SC', system-ui", fontSize: 14, fontWeight: 600, color: '#5E4630', outline: 'none',
             }}>
               {WK_LANGS.map(([code]) => {
-                const full = { zh: '简体中文', en: 'English', ja: '日本語', 'zh-Hant': '繁體中文' }[code];
+                const full = code === 'auto' ? T.autoLang
+                  : { zh: '简体中文', en: 'English', ja: '日本語', 'zh-Hant': '繁體中文' }[code];
                 return <option key={code} value={code}>{full}</option>;
               })}
             </select>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
               <path d="M6 9l6 6 6-6" stroke="#B08A60" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+          </div>
+
+          <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10 }}>{T.sound}</div>
+          <div style={{ marginBottom: 28, borderRadius: 14, background: '#fff', border: '0.5px solid rgba(120,78,40,0.1)', overflow: 'hidden' }}>
+            <SoundRow label={T.chimeOption} on={chime} onChange={setChime} />
+            <SoundRow label={T.ambientOption} on={ambient} onChange={setAmbient} last />
           </div>
 
           <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10 }}>{T.general}</div>
@@ -457,18 +477,12 @@ function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChim
             <ButtonRow label={`${T.version} ${version}`} buttonLabel={T.checkNow} onClick={checkUpdates} last />
           </div>
 
-          <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10 }}>{T.sound}</div>
-          <div style={{ marginBottom: 28, borderRadius: 14, background: '#fff', border: '0.5px solid rgba(120,78,40,0.1)', overflow: 'hidden' }}>
-            <SoundRow label={T.chimeOption} on={chime} onChange={setChime} />
-            <SoundRow label={T.ambientOption} on={ambient} onChange={setAmbient} last />
-          </div>
-
           <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 14 }}>{T.about}</div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '4px 0 8px' }}>
             <AppIcon size={88} />
             <div style={{ fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: '#5E4630', marginTop: 12 }}>Warm Kitty</div>
             <p style={{
-              margin: '8px 0 0', fontFamily: "'Baloo 2', system-ui", fontStyle: lang === 'en' ? 'italic' : 'normal', fontSize: 15, fontWeight: 500,
+              margin: '8px 0 0', fontFamily: "'Baloo 2', system-ui", fontStyle: effLang === 'en' ? 'italic' : 'normal', fontSize: 15, fontWeight: 500,
               color: '#C2703C', lineHeight: 1.4, maxWidth: 240, textWrap: 'balance',
             }}>"{T.slogan}"</p>
           </div>
@@ -501,7 +515,7 @@ function App() {
   const [rem, setRem] = React.useState(0);
   const [total, setTotal] = React.useState(0);
   const [narrIdx, setNarrIdx] = React.useState(0);
-  const [lang, setLangState] = React.useState(() => { const v = localStorage.getItem('wk_lang'); return WK_I18N[v] ? v : 'zh'; });
+  const [lang, setLangState] = React.useState(() => { const v = localStorage.getItem('wk_lang'); return (v === 'auto' || WK_I18N[v]) ? v : 'auto'; });
   const setLang = (v) => { setLangState(v); localStorage.setItem('wk_lang', v); };
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [firstRun, setFirstRun] = React.useState(() => !localStorage.getItem('wk_seen_v2'));
@@ -516,7 +530,8 @@ function App() {
   const setAutoUpdate = (v) => { setAutoUpdateState(v); post({ type: 'setAutoUpdate', enabled: v }); };
   const checkUpdates = () => post({ type: 'checkForUpdates' });
   const chimeRef = React.useRef(chime); chimeRef.current = chime;
-  const T = WK_I18N[lang] || WK_I18N.zh;
+  const effLang = lang === 'auto' ? resolveLang() : lang;
+  const T = WK_I18N[effLang] || WK_I18N.zh;
 
   React.useEffect(() => { localStorage.setItem('wk_minutes', String(minutes)); }, [minutes]);
 
@@ -634,7 +649,7 @@ function App() {
         )}
       </div>
 
-      <SettingsPage open={settingsOpen} onClose={() => setSettingsOpen(false)} lang={lang} setLang={setLang} T={T} version={version} chime={chime} setChime={setChime} ambient={ambient} setAmbient={setAmbient}
+      <SettingsPage open={settingsOpen} onClose={() => setSettingsOpen(false)} lang={lang} effLang={effLang} setLang={setLang} T={T} version={version} chime={chime} setChime={setChime} ambient={ambient} setAmbient={setAmbient}
         launchAtLogin={launchAtLogin} setLaunchAtLogin={setLaunchAtLogin} autoUpdate={autoUpdate} setAutoUpdate={setAutoUpdate} checkUpdates={checkUpdates} />
       {firstRun && <FirstRun T={T} onClose={() => { setFirstRun(false); localStorage.setItem('wk_seen_v2', '1'); }} accent={accent} />}
     </div>
