@@ -11,6 +11,7 @@
 		2D1102E2465B540300CD16FA /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF6B453FF16D16AACF716C /* SettingsStore.swift */; };
 		2D64B8D4EB0F951F30A30A08 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069B403D58F0E87683C34DB /* LocaleManager.swift */; };
 		4320DA54A7471BCA1F3AAE9C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1641608414F10A67166AD1 /* RootView.swift */; };
+		59DEF86E9B1F10AD4CF0A70F /* CatStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD4D0C5A3A01E915E84786F /* CatStageView.swift */; };
 		68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1255EE8558F99F02738D8 /* AudioController.swift */; };
 		6E47655F8F30C4F6972399FA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AAE93A1A7AEF4586D772E390 /* Fonts */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AD4D0C5A3A01E915E84786F /* CatStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatStageView.swift; sourceTree = "<group>"; };
 		2972B47441814FCFF71FCBB6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
 		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		90E263C20DC4D84D607F0BFA /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1AD4D0C5A3A01E915E84786F /* CatStageView.swift */,
 				CC1641608414F10A67166AD1 /* RootView.swift */,
 			);
 			path = UI;
@@ -244,6 +247,7 @@
 			files = (
 				68845AE9B6B5FC12282458AD /* AudioController.swift in Sources */,
 				C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */,
+				59DEF86E9B1F10AD4CF0A70F /* CatStageView.swift in Sources */,
 				D25196B0235FF707D763EFC0 /* Color+Hex.swift in Sources */,
 				DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */,
 				D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */,
