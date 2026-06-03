@@ -20,8 +20,10 @@
 		84A193FC6115503AEA212CD6 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 385785BFBDE77ADB31824B19 /* Sparkle */; };
 		87928113E9404FC70F0C78D4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CED087459D5F4E34C63922A8 /* Localizable.xcstrings */; };
 		8B9A2FB69C5770B3561D8301 /* ReadoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912A977B67362C98BBB543B /* ReadoutView.swift */; };
+		9367AF03E7DF3D0D1DE5804D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26015535F58BFE74CB49FB3 /* SettingsView.swift */; };
 		9372668DD462BFDECDBBDC4A /* SettingsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E127DFB00040416D3F8BADB /* SettingsStoreTests.swift */; };
 		A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4500F2209A4EAB48CFB8608 /* Assets.xcassets */; };
+		AF294E377D90AE538C40891F /* SettingRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C03B00AF72F47E52C44AD4E /* SettingRows.swift */; };
 		C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9496F5893E72FFDFE72CF8 /* Bridge.swift */; };
 		C8DD5C2A07786CC9EB03934E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6549A4DE56F0D546B28629 /* main.swift */; };
 		D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */; };
@@ -48,6 +50,7 @@
 /* Begin PBXFileReference section */
 		0359B65EDA91F3A26801F64B /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		1AD4D0C5A3A01E915E84786F /* CatStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatStageView.swift; sourceTree = "<group>"; };
+		1C03B00AF72F47E52C44AD4E /* SettingRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRows.swift; sourceTree = "<group>"; };
 		2972B47441814FCFF71FCBB6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
 		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		A891A3DC49A4FF605C9E8648 /* WarmSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmSliderView.swift; sourceTree = "<group>"; };
 		AAE93A1A7AEF4586D772E390 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Resources/Fonts; sourceTree = SOURCE_ROOT; };
 		B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatingEngine.swift; sourceTree = "<group>"; };
+		C26015535F58BFE74CB49FB3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUHeatingEngine.swift; sourceTree = "<group>"; };
 		C7EF6B453FF16D16AACF716C /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		CC1641608414F10A67166AD1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				1AD4D0C5A3A01E915E84786F /* CatStageView.swift */,
 				5912A977B67362C98BBB543B /* ReadoutView.swift */,
 				CC1641608414F10A67166AD1 /* RootView.swift */,
+				1C03B00AF72F47E52C44AD4E /* SettingRows.swift */,
+				C26015535F58BFE74CB49FB3 /* SettingsView.swift */,
 				A891A3DC49A4FF605C9E8648 /* WarmSliderView.swift */,
 			);
 			path = UI;
@@ -265,7 +271,9 @@
 				8B9A2FB69C5770B3561D8301 /* ReadoutView.swift in Sources */,
 				4320DA54A7471BCA1F3AAE9C /* RootView.swift in Sources */,
 				F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */,
+				AF294E377D90AE538C40891F /* SettingRows.swift in Sources */,
 				2D1102E2465B540300CD16FA /* SettingsStore.swift in Sources */,
+				9367AF03E7DF3D0D1DE5804D /* SettingsView.swift in Sources */,
 				7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */,
 				7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */,
 				040807544E81B18BBFD869CD /* WarmSliderView.swift in Sources */,

@@ -38,3 +38,18 @@ final class UpdateChecker: NSObject {
         controller.checkForUpdates(nil)
     }
 }
+
+import ServiceManagement
+
+extension UpdateChecker {
+    var launchAtLogin: Bool { SMAppService.mainApp.status == .enabled }
+
+    func setLaunchAtLogin(_ enabled: Bool) {
+        do {
+            if enabled { try SMAppService.mainApp.register() }
+            else { try SMAppService.mainApp.unregister() }
+        } catch {
+            NSLog("WarmKitty: launch-at-login change failed: \(error.localizedDescription)")
+        }
+    }
+}
