@@ -17,6 +17,7 @@ targets:
     sources:
       - path: Sources
       - path: Assets.xcassets
+      - path: Resources/Localizable.xcstrings
       - path: Resources/Audio
         type: folder
       - path: Resources/Fonts
