@@ -42,3 +42,15 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Warm Kitty.app/Contents/MacOS/Warm Kitty"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  WarmKitty:
+    build:
+      targets:
+        WarmKitty: all
+        WarmKittyTests: [test]
+    test:
+      targets:
+        - WarmKittyTests

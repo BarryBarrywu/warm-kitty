@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20885005DCF8F2738FF0311F /* SessionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */; };
 		6E47655F8F30C4F6972399FA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AAE93A1A7AEF4586D772E390 /* Fonts */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
 		7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */; };
@@ -40,6 +41,7 @@
 		7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		865B0FD4040D8C6A5D217A66 /* WarmKitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarmKitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6549A4DE56F0D546B28629 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionControllerTests.swift; sourceTree = "<group>"; };
 		AAE93A1A7AEF4586D772E390 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Resources/Fonts; sourceTree = SOURCE_ROOT; };
 		B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatingEngine.swift; sourceTree = "<group>"; };
 		C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUHeatingEngine.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */,
+				9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */,
 			);
 			path = WarmKittyTests;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20885005DCF8F2738FF0311F /* SessionControllerTests.swift in Sources */,
 				F8908288A70C10121143637A /* _PlaceholderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,7 +253,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.WarmKittyTests;
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WarmKitty.app/Contents/MacOS/WarmKitty";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Warm Kitty.app/Contents/MacOS/Warm Kitty";
 			};
 			name = Debug;
 		};
@@ -360,7 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.WarmKittyTests;
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WarmKitty.app/Contents/MacOS/WarmKitty";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Warm Kitty.app/Contents/MacOS/Warm Kitty";
 			};
 			name = Release;
 		};

@@ -1,33 +1,27 @@
 import Foundation
+import Combine
+
+enum WarmPhase: Equatable { case standby, warming, ending }
 
 /// Orchestrates a warming session: a user-chosen countdown (1–15 min) drives the
 /// CPU + GPU heating engines at full tilt; the timer is the auto-stop. No thermal
 /// sensing — the user's hands judge warmth, the clock decides when to stop.
-final class SessionController {
+final class SessionController: ObservableObject {
+    @Published private(set) var phase: WarmPhase = .standby
+    @Published private(set) var remaining = 0
+    @Published private(set) var total = 0
+
     private let engine = HeatingEngine()
     private let gpuEngine = GPUHeatingEngine()
-
     private var timer: Timer?
-    private var running = false
-    private var total = 0       // seconds in this session
-    private var remaining = 0
-
-    /// Each second: (remainingSeconds, totalSeconds).
-    var onTick: ((Int, Int) -> Void)?
-    /// Running state changed (drives the button + phase).
-    var onRunningChanged: ((Bool) -> Void)?
-    /// Countdown reached zero naturally (drives the ending animation).
-    var onDone: (() -> Void)?
 
     func start(minutes: Int) {
-        guard !running else { return }
+        guard phase != .warming else { return }
         total = max(1, min(15, minutes)) * 60
         remaining = total
-        running = true
+        phase = .warming
         engine.start()
         gpuEngine.start()
-        onRunningChanged?(true)
-        onTick?(remaining, total)
         let t = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in self?.tick() }
         RunLoop.main.add(t, forMode: .common)
         timer = t
@@ -35,34 +29,29 @@ final class SessionController {
 
     /// Manual stop — no ending animation.
     func stop() {
-        guard running else { return }
+        guard phase == .warming else { return }
         teardown()
-        onRunningChanged?(false)
+        phase = .standby
     }
 
-    /// App teardown — stop heating without firing UI callbacks.
-    func shutdown() {
-        teardown()
-    }
+    /// User dismissed the ending screen.
+    func reset() { phase = .standby }
+
+    /// App teardown — stop heating without changing published phase.
+    func shutdown() { teardown() }
 
     private func teardown() {
-        running = false
-        timer?.invalidate()
-        timer = nil
-        engine.stop()
-        gpuEngine.stop()
+        timer?.invalidate(); timer = nil
+        engine.stop(); gpuEngine.stop()
     }
 
     private func tick() {
-        guard running else { return }
+        guard phase == .warming else { return }
         remaining -= 1
         if remaining <= 0 {
-            onTick?(0, total)
+            remaining = 0
             teardown()
-            onRunningChanged?(false)
-            onDone?()
-        } else {
-            onTick?(remaining, total)
+            phase = .ending
         }
     }
 }

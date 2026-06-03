@@ -15,15 +15,7 @@ final class Bridge: NSObject, WKScriptMessageHandler {
         self.updateChecker = updateChecker
         super.init()
 
-        session.onTick = { [weak self] remaining, total in
-            self?.eval("window.warmkitty && warmkitty.onTick(\(remaining), \(total))")
-        }
-        session.onRunningChanged = { [weak self] running in
-            self?.eval("window.warmkitty && warmkitty.onRunning(\(running))")
-        }
-        session.onDone = { [weak self] in
-            self?.eval("window.warmkitty && warmkitty.onDone()")
-        }
+        // Bridge callbacks removed — Bridge is replaced by SwiftUI in a later task.
     }
 
     func userContentController(_ controller: WKUserContentController, didReceive message: WKScriptMessage) {
