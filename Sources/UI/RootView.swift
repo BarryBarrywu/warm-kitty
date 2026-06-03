@@ -38,8 +38,10 @@ struct RootView: View {
                 titleBar
                 mainColumn
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .frame(width: 444, height: 690)
+        .ignoresSafeArea()
         .environment(\.locale, locale.locale)
         .overlay {
             if settingsOpen {

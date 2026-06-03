@@ -24,23 +24,30 @@ struct WarmSliderView: View {
             GeometryReader { geo in
                 let w = geo.size.width
                 let x = CGFloat(pos) * w
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color(hex: "6E4A33", alpha: 0.16)).frame(height: 10)
-                    Capsule().fill(Color(hex: "E08A4B")).frame(width: x, height: 10)
-                    if warming {
-                        Circle().fill(
-                            RadialGradient(colors: [Color(hex: "E08A4B", alpha: 0.85), .clear],
-                                           center: .center, startRadius: 0, endRadius: 25))
-                            .frame(width: 50, height: 50).position(x: x, y: 5)
+                ZStack(alignment: .topLeading) {
+                    // full-band transparent hit area (so grabbing the heater works)
+                    Color.clear
+                        .frame(width: w, height: heaterH)
+                        .contentShape(Rectangle())
+                    // visuals — unchanged track + fill + glow + heater, pinned to the top 10pt
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(Color(hex: "6E4A33", alpha: 0.16)).frame(height: 10)
+                        Capsule().fill(Color(hex: "E08A4B")).frame(width: x, height: 10)
+                        if warming {
+                            Circle().fill(
+                                RadialGradient(colors: [Color(hex: "E08A4B", alpha: 0.85), .clear],
+                                               center: .center, startRadius: 0, endRadius: 25))
+                                .frame(width: 50, height: 50).position(x: x, y: 5)
+                        }
+                        Image("heater").resizable().scaledToFit()
+                            .frame(width: heaterW, height: heaterH)
+                            .shadow(color: Color(hex: "6E4A33", alpha: 0.4), radius: 3, y: 3)
+                            .position(x: x, y: 5 - (heaterH/2 - 12))
                     }
-                    Image("heater").resizable().scaledToFit()
-                        .frame(width: heaterW, height: heaterH)
-                        .shadow(color: Color(hex: "6E4A33", alpha: 0.4), radius: 3, y: 3)
-                        .position(x: x, y: 5 - (heaterH/2 - 12))
+                    .frame(width: w, height: 10, alignment: .topLeading)
                 }
-                .frame(height: 10)
+                .frame(width: w, height: heaterH, alignment: .topLeading)
                 .animation(warming ? .linear(duration: 1) : nil, value: frac)
-                .contentShape(Rectangle())
                 .gesture(warming ? nil : DragGesture(minimumDistance: 0).onChanged { v in
                     let f = min(max(v.location.x / w, 0), 1)
                     minutes = Int((Double(minM) + f * Double(maxM - minM)).rounded())
