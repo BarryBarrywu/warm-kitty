@@ -33,7 +33,6 @@
 		DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */; };
 		F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */; };
 		F834D4D36FC0DFDD2627A8B0 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = 3577C932323C71CDD66E9C71 /* Audio */; };
-		F8908288A70C10121143637A /* _PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +50,6 @@
 		1AD4D0C5A3A01E915E84786F /* CatStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatStageView.swift; sourceTree = "<group>"; };
 		1C03B00AF72F47E52C44AD4E /* SettingRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRows.swift; sourceTree = "<group>"; };
 		2972B47441814FCFF71FCBB6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
-		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
 		3577C932323C71CDD66E9C71 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = Resources/Audio; sourceTree = SOURCE_ROOT; };
 		43BB29954B4C5EFECF67212C /* FirstRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunView.swift; sourceTree = "<group>"; };
 		5912A977B67362C98BBB543B /* ReadoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadoutView.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		24860724F066D70264D483B3 /* WarmKittyTests */ = {
 			isa = PBXGroup;
 			children = (
-				2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */,
 				FDF05A95E6E3C75B6051166B /* LocaleManagerTests.swift */,
 				9F2A2AC12F3282A21547281D /* SessionControllerTests.swift */,
 				7E127DFB00040416D3F8BADB /* SettingsStoreTests.swift */,
@@ -285,7 +282,6 @@
 				D506E758EB3D51C59F21C8F5 /* LocaleManagerTests.swift in Sources */,
 				20885005DCF8F2738FF0311F /* SessionControllerTests.swift in Sources */,
 				9372668DD462BFDECDBBDC4A /* SettingsStoreTests.swift in Sources */,
-				F8908288A70C10121143637A /* _PlaceholderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
