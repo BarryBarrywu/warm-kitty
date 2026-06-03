@@ -5,6 +5,11 @@ options:
     macOS: "13.0"
   createIntermediateGroups: true
 
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.7.0"
+
 targets:
   WarmKitty:
     type: application
@@ -14,16 +19,14 @@ targets:
       - path: Resources/web
         type: folder
       - path: Assets.xcassets
+    dependencies:
+      - package: Sparkle
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.barrybarrywu.warmkitty
         PRODUCT_NAME: Warm Kitty
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "5.0"
-        GENERATE_INFOPLIST_FILE: YES
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Info.plist
         ENABLE_HARDENED_RUNTIME: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        INFOPLIST_KEY_CFBundleDisplayName: Warm Kitty
-        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
-        INFOPLIST_KEY_NSHighResolutionCapable: YES

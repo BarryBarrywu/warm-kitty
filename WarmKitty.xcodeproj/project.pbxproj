@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
+		84A193FC6115503AEA212CD6 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 385785BFBDE77ADB31824B19 /* Sparkle */; };
 		A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4500F2209A4EAB48CFB8608 /* Assets.xcassets */; };
 		B2B1EC9E5A078A0703E0592E /* web in Resources */ = {isa = PBXBuildFile; fileRef = 953665894F0A316525B72F43 /* web */; };
 		C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9496F5893E72FFDFE72CF8 /* Bridge.swift */; };
@@ -30,6 +31,17 @@
 		D4500F2209A4EAB48CFB8608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06875534A3160272F208D369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84A193FC6115503AEA212CD6 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		762E32FDBB878CA1857CFAB2 /* Products */ = {
@@ -81,6 +93,7 @@
 			buildPhases = (
 				743443105EECAD6DC0C6BEF3 /* Sources */,
 				341D7AC9DC4FB3B69A0820A2 /* Resources */,
+				06875534A3160272F208D369 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -88,6 +101,7 @@
 			);
 			name = WarmKitty;
 			packageProductDependencies = (
+				385785BFBDE77ADB31824B19 /* Sparkle */,
 			);
 			productName = WarmKitty;
 			productReference = 865B0FD4040D8C6A5D217A66 /* WarmKitty.app */;
@@ -113,6 +127,9 @@
 			);
 			mainGroup = DE7741C29FC8686487C2FF2D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BA641589C57B4F5C200CD9D4 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 762E32FDBB878CA1857CFAB2 /* Products */;
 			projectDirPath = "";
@@ -158,17 +175,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Warm Kitty";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHighResolutionCapable = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.warmkitty;
 				PRODUCT_NAME = "Warm Kitty";
 				SDKROOT = macosx;
@@ -237,17 +250,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Warm Kitty";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHighResolutionCapable = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.warmkitty;
 				PRODUCT_NAME = "Warm Kitty";
 				SDKROOT = macosx;
@@ -340,6 +349,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA641589C57B4F5C200CD9D4 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		385785BFBDE77ADB31824B19 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA641589C57B4F5C200CD9D4 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28E422B7DA1804B7DF88925E /* Project object */;
 }
