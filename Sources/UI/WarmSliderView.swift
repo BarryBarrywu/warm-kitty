@@ -24,29 +24,32 @@ struct WarmSliderView: View {
             GeometryReader { geo in
                 let w = geo.size.width
                 let x = CGFloat(pos) * w
+                let trackY = heaterH - 6          // track sits near the bottom of the band
                 ZStack(alignment: .topLeading) {
                     // full-band transparent hit area (so grabbing the heater works)
                     Color.clear
                         .frame(width: w, height: heaterH)
                         .contentShape(Rectangle())
-                    // visuals — unchanged track + fill + glow + heater, pinned to the top 10pt
-                    ZStack(alignment: .leading) {
-                        Capsule().fill(Color(hex: "6E4A33", alpha: 0.16)).frame(height: 10)
-                        Capsule().fill(Color(hex: "E08A4B")).frame(width: x, height: 10)
-                        if warming {
-                            Circle().fill(
-                                RadialGradient(colors: [Color(hex: "E08A4B", alpha: 0.85), .clear],
-                                               center: .center, startRadius: 0, endRadius: 25))
-                                .frame(width: 50, height: 50).position(x: x, y: 5)
-                        }
-                        Image("heater").resizable().scaledToFit()
-                            .frame(width: heaterW, height: heaterH)
-                            .shadow(color: Color(hex: "6E4A33", alpha: 0.4), radius: 3, y: 3)
-                            .position(x: x, y: 5 - (heaterH/2 - 12))
+                    Capsule().fill(Color(hex: "6E4A33", alpha: 0.16))
+                        .frame(width: w, height: 10)
+                        .position(x: w / 2, y: trackY)
+                    Capsule().fill(Color(hex: "E08A4B"))
+                        .frame(width: max(x, 0.001), height: 10)
+                        .position(x: x / 2, y: trackY)
+                    if warming {
+                        Circle().fill(
+                            RadialGradient(colors: [Color(hex: "E08A4B", alpha: 0.85), .clear],
+                                           center: .center, startRadius: 0, endRadius: 25))
+                            .frame(width: 50, height: 50)
+                            .position(x: x, y: trackY)
                     }
-                    .frame(width: w, height: 10, alignment: .topLeading)
+                    Image("heater").resizable().scaledToFit()
+                        .frame(width: heaterW, height: heaterH)
+                        .shadow(color: Color(hex: "6E4A33", alpha: 0.4), radius: 3, y: 3)
+                        .position(x: x, y: heaterH / 2)   // heater fills the band, base resting on the track
                 }
                 .frame(width: w, height: heaterH, alignment: .topLeading)
+                .contentShape(Rectangle())
                 .animation(warming ? .linear(duration: 1) : nil, value: frac)
                 .gesture(warming ? nil : DragGesture(minimumDistance: 0).onChanged { v in
                     let f = min(max(v.location.x / w, 0), 1)

@@ -6,6 +6,13 @@ final class KeyableWindow: NSWindow {
     override var canBecomeMain: Bool { true }
 }
 
+/// Hosting view that reports no safe-area insets, so the SwiftUI content (including
+/// our custom title bar) fills from the true top of the full-size-content window
+/// instead of being pushed down by the system title-bar inset.
+final class NoSafeAreaHostingView<V: View>: NSHostingView<V> {
+    override var safeAreaInsets: NSEdgeInsets { NSEdgeInsets() }
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var window: NSWindow!
     private let session = SessionController()
@@ -22,7 +29,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         let root = RootView(session: session, settings: settings, locale: locale,
                             updateChecker: updateChecker, audio: audio)
-        let host = NSHostingView(rootView: root)
+        let host = NoSafeAreaHostingView(rootView: root)
         host.frame = NSRect(origin: .zero, size: winSize)
         host.autoresizingMask = [.width, .height]
 
@@ -48,7 +55,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = true
-        window.isMovableByWindowBackground = true
+        window.isMovableByWindowBackground = false
         window.contentView = container
         window.center()
         window.makeKeyAndOrderFront(nil)

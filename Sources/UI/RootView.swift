@@ -100,7 +100,7 @@ struct RootView: View {
         VStack(spacing: 0) {
             CatStageView(phase: session.phase, holdSeconds: 8) { narrIdx = $0 }
                 .frame(width: 256, height: 256)
-                .padding(.top, 16)
+                .padding(.top, 2)
             ReadoutView(phase: session.phase, minutes: settings.minutes,
                         remaining: session.remaining, code: code)
                 .padding(.top, 4)
@@ -108,7 +108,7 @@ struct RootView: View {
                 .font(.custom("ZCOOL KuaiLe", size: 16)).foregroundColor(Color(hex: "7A5230"))
                 .multilineTextAlignment(.center).frame(minHeight: 40).padding(.top, 4)
             Spacer(minLength: 2)
-            controls.padding(.bottom, 32)
+            controls.padding(.bottom, 12)
         }
         .padding(.horizontal, 30)
     }
@@ -122,13 +122,13 @@ struct RootView: View {
                            frac: frac, code: code)
             if session.phase == .standby {
                 primaryButton(L("start", code), filled: true) { session.start(minutes: settings.minutes) }
-                    .padding(.top, 18)
+                    .padding(.top, 12)
                 Text(L("footnote", code)).font(.custom("PingFang SC", size: 11))
                     .foregroundColor(Color(hex: "B08A60")).multilineTextAlignment(.center)
                     .frame(minHeight: 30).padding(.top, 11)
             } else {
                 primaryButton(L("stop", code), filled: false) { session.stop() }
-                    .padding(.top, 18)
+                    .padding(.top, 12)
                 Color.clear.frame(height: 30).padding(.top, 11)
             }
         }
