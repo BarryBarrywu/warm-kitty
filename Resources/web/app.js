@@ -35,6 +35,10 @@ const WK_I18N = {
     sound: "\u58F0\u97F3",
     chimeOption: "\u5B8C\u6210\u63D0\u793A\u97F3",
     ambientOption: "\u6696\u624B\u73AF\u5883\u97F3",
+    general: "\u901A\u7528",
+    launchAtLogin: "\u5F00\u673A\u81EA\u52A8\u542F\u52A8",
+    autoUpdate: "\u81EA\u52A8\u68C0\u67E5\u66F4\u65B0",
+    checkNow: "\u68C0\u67E5\u66F4\u65B0",
     firstTitle: "\u6B22\u8FCE\u6765\u5230 Warm Kitty",
     firstBody: "\u6211\u4F1A\u8BA9\u7535\u8111\u8F7B\u8F7B\u53D1\u70B9\u70ED\uFF0C\u5E2E\u4F60\u7110\u6696\u4E00\u53CC\u5C0F\u624B\u3002\u9009\u4E2A\u65F6\u957F\u5C31\u5F00\u59CB\uFF0C\u65F6\u95F4\u4E00\u5230\u81EA\u52A8\u505C\u4E0B\u3002",
     firstBtn: "\u597D\u7684\uFF0C\u5F00\u59CB\u5427",
@@ -73,6 +77,10 @@ const WK_I18N = {
     sound: "Sound",
     chimeOption: "Completion chime",
     ambientOption: "Warming ambience",
+    general: "General",
+    launchAtLogin: "Launch at login",
+    autoUpdate: "Check for updates automatically",
+    checkNow: "Check now",
     firstTitle: "Welcome to Warm Kitty",
     firstBody: "I gently warm your laptop to toast your hands. Pick a time, tap start, and I stop on my own when it runs out.",
     firstBtn: "Got it, let\u2019s go",
@@ -111,6 +119,10 @@ const WK_I18N = {
     sound: "\u30B5\u30A6\u30F3\u30C9",
     chimeOption: "\u5B8C\u4E86\u306E\u97F3",
     ambientOption: "\u6696\u3081\u306E\u74B0\u5883\u97F3",
+    general: "\u4E00\u822C",
+    launchAtLogin: "\u30ED\u30B0\u30A4\u30F3\u6642\u306B\u8D77\u52D5",
+    autoUpdate: "\u81EA\u52D5\u7684\u306B\u66F4\u65B0\u3092\u78BA\u8A8D",
+    checkNow: "\u4ECA\u3059\u3050\u78BA\u8A8D",
     firstTitle: "Warm Kitty \u3078\u3088\u3046\u3053\u305D",
     firstBody: "PC\u3092\u307B\u3093\u306E\u308A\u767A\u71B1\u3055\u305B\u3066\u3001\u624B\u3092\u306C\u304F\u306C\u304F\u306B\u3057\u307E\u3059\u3002\u6642\u9593\u3092\u9078\u3093\u3067\u958B\u59CB\u30010\u306B\u306A\u3063\u305F\u3089\u81EA\u52D5\u3067\u6B62\u307E\u308A\u307E\u3059\u3002",
     firstBtn: "\u306F\u3058\u3081\u308B",
@@ -149,6 +161,10 @@ const WK_I18N = {
     sound: "\u8072\u97F3",
     chimeOption: "\u5B8C\u6210\u63D0\u793A\u97F3",
     ambientOption: "\u6696\u624B\u74B0\u5883\u97F3",
+    general: "\u4E00\u822C",
+    launchAtLogin: "\u958B\u6A5F\u81EA\u52D5\u555F\u52D5",
+    autoUpdate: "\u81EA\u52D5\u6AA2\u67E5\u66F4\u65B0",
+    checkNow: "\u6AA2\u67E5\u66F4\u65B0",
     firstTitle: "\u6B61\u8FCE\u4F86\u5230 Warm Kitty",
     firstBody: "\u6211\u6703\u8B93\u96FB\u8166\u8F15\u8F15\u767C\u9EDE\u71B1\uFF0C\u5E6B\u4F60\u7110\u6696\u4E00\u96D9\u5C0F\u624B\u3002\u9078\u500B\u6642\u9577\u5C31\u958B\u59CB\uFF0C\u6642\u9593\u4E00\u5230\u81EA\u52D5\u505C\u4E0B\u3002",
     firstBtn: "\u597D\u7684\uFF0C\u958B\u59CB\u5427",
@@ -334,6 +350,25 @@ function SoundRow({ label, on, onChange, last }) {
     borderBottom: last ? "none" : "0.5px solid rgba(120,78,40,0.08)"
   } }, /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 14, fontWeight: 600, color: "#5E4630" } }, label), /* @__PURE__ */ React.createElement("span", { style: { marginLeft: "auto" } }, /* @__PURE__ */ React.createElement(Toggle, { on, onChange })));
 }
+function ButtonRow({ label, buttonLabel, onClick, last }) {
+  return /* @__PURE__ */ React.createElement("div", { style: {
+    display: "flex",
+    alignItems: "center",
+    padding: "13px 15px",
+    borderBottom: last ? "none" : "0.5px solid rgba(120,78,40,0.08)"
+  } }, /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 14, fontWeight: 600, color: "#5E4630" } }, label), /* @__PURE__ */ React.createElement("button", { onClick, style: {
+    marginLeft: "auto",
+    border: "0.5px solid rgba(120,78,40,0.18)",
+    background: "#fff",
+    borderRadius: 9,
+    cursor: "pointer",
+    padding: "6px 12px",
+    fontFamily: "'PingFang SC', system-ui",
+    fontSize: 13,
+    fontWeight: 600,
+    color: "#C2703C"
+  } }, buttonLabel));
+}
 const WK_VERSION = "1.1.0";
 const WK_SITE = "warmkitty.barrybarrywu.com";
 const WK_GITHUB = "https://github.com/barrybarrywu/warm-kitty";
@@ -430,7 +465,23 @@ function AppIcon({ size = 88 }) {
     filter: "drop-shadow(0 8px 20px -6px rgba(224,138,75,0.6))"
   } });
 }
-function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChime, ambient, setAmbient }) {
+function SettingsPage({
+  open,
+  onClose,
+  lang,
+  setLang,
+  T,
+  version,
+  chime,
+  setChime,
+  ambient,
+  setAmbient,
+  launchAtLogin,
+  setLaunchAtLogin,
+  autoUpdate,
+  setAutoUpdate,
+  checkUpdates
+}) {
   return /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", inset: 0, zIndex: 20, pointerEvents: open ? "auto" : "none" } }, /* @__PURE__ */ React.createElement("div", { onClick: onClose, style: {
     position: "absolute",
     inset: 0,
@@ -487,7 +538,7 @@ function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChim
   } }, WK_LANGS.map(([code]) => {
     const full = { zh: "\u7B80\u4F53\u4E2D\u6587", en: "English", ja: "\u65E5\u672C\u8A9E", "zh-Hant": "\u7E41\u9AD4\u4E2D\u6587" }[code];
     return /* @__PURE__ */ React.createElement("option", { key: code, value: code }, full);
-  })), /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", style: { position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" } }, /* @__PURE__ */ React.createElement("path", { d: "M6 9l6 6 6-6", stroke: "#B08A60", strokeWidth: "2.2", strokeLinecap: "round", strokeLinejoin: "round" }))), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.sound), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.chimeOption, on: chime, onChange: setChime }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.ambientOption, on: ambient, onChange: setAmbient, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 14 } }, T.about), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "4px 0 8px" } }, /* @__PURE__ */ React.createElement(AppIcon, { size: 88 }), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: "#5E4630", marginTop: 12 } }, "Warm Kitty"), /* @__PURE__ */ React.createElement("p", { style: {
+  })), /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", style: { position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", pointerEvents: "none" } }, /* @__PURE__ */ React.createElement("path", { d: "M6 9l6 6 6-6", stroke: "#B08A60", strokeWidth: "2.2", strokeLinecap: "round", strokeLinejoin: "round" }))), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.general), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.launchAtLogin, on: launchAtLogin, onChange: setLaunchAtLogin }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.autoUpdate, on: autoUpdate, onChange: setAutoUpdate }), /* @__PURE__ */ React.createElement(ButtonRow, { label: `${T.version} ${version}`, buttonLabel: T.checkNow, onClick: checkUpdates, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 10 } }, T.sound), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 28, borderRadius: 14, background: "#fff", border: "0.5px solid rgba(120,78,40,0.1)", overflow: "hidden" } }, /* @__PURE__ */ React.createElement(SoundRow, { label: T.chimeOption, on: chime, onChange: setChime }), /* @__PURE__ */ React.createElement(SoundRow, { label: T.ambientOption, on: ambient, onChange: setAmbient, last: true })), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: "#B08A60", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 14 } }, T.about), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "4px 0 8px" } }, /* @__PURE__ */ React.createElement(AppIcon, { size: 88 }), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: "'ZCOOL KuaiLe', 'Baloo 2', system-ui", fontSize: 22, color: "#5E4630", marginTop: 12 } }, "Warm Kitty"), /* @__PURE__ */ React.createElement("p", { style: {
     margin: "8px 0 0",
     fontFamily: "'Baloo 2', system-ui",
     fontStyle: lang === "en" ? "italic" : "normal",
@@ -537,6 +588,17 @@ function App() {
     setAmbState(v);
     localStorage.setItem("wk_ambient", v ? "1" : "0");
   };
+  const [launchAtLogin, setLaunchAtLoginState] = React.useState(false);
+  const [autoUpdate, setAutoUpdateState] = React.useState(true);
+  const setLaunchAtLogin = (v) => {
+    setLaunchAtLoginState(v);
+    post({ type: "setLaunchAtLogin", enabled: v });
+  };
+  const setAutoUpdate = (v) => {
+    setAutoUpdateState(v);
+    post({ type: "setAutoUpdate", enabled: v });
+  };
+  const checkUpdates = () => post({ type: "checkForUpdates" });
   const chimeRef = React.useRef(chime);
   chimeRef.current = chime;
   const T = WK_I18N[lang] || WK_I18N.zh;
@@ -560,6 +622,8 @@ function App() {
     };
     window.warmkitty.onDone = () => setPhase("ending");
     window.warmkitty.onVersion = (v) => setVersion(v);
+    window.warmkitty.onLaunchAtLogin = (v) => setLaunchAtLoginState(v);
+    window.warmkitty.onAutoUpdate = (v) => setAutoUpdateState(v);
     post({ type: "ready" });
   }, []);
   const begin = () => {
@@ -625,7 +689,26 @@ function App() {
     lineHeight: 1.4,
     textWrap: "pretty",
     animation: "wk-narr .45s ease"
-  } }, narr)), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 2 } }), phase !== "ending" && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(WarmSlider, { phase, minutes, setMinutes, frac, accent, stepMs, T }), phase === "standby" ? /* @__PURE__ */ React.createElement("button", { onClick: begin, className: "wk-btn", style: { "--accent": accent, background: accent, color: "#fff", borderColor: "transparent", marginTop: 18 } }, /* @__PURE__ */ React.createElement(FlameIcon, null), T.start) : /* @__PURE__ */ React.createElement("button", { onClick: halt, className: "wk-btn", style: { "--accent": accent, background: "transparent", color: "#9A6A45", borderColor: "rgba(154,106,69,0.4)", marginTop: 18 } }, /* @__PURE__ */ React.createElement("span", { className: "wk-pulse", style: { background: accent } }), T.stop), /* @__PURE__ */ React.createElement("div", { style: { minHeight: 30, marginTop: 11, flexShrink: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: "#B08A60", textAlign: "center", textWrap: "pretty" } }, phase === "standby" ? T.footnote : "")), phase === "ending" && /* @__PURE__ */ React.createElement("button", { onClick: restart, className: "wk-btn", style: { "--accent": accent, background: accent, color: "#fff", borderColor: "transparent" } }, /* @__PURE__ */ React.createElement(PawIcon, null), T.restart)), /* @__PURE__ */ React.createElement(SettingsPage, { open: settingsOpen, onClose: () => setSettingsOpen(false), lang, setLang, T, version, chime, setChime, ambient, setAmbient }), firstRun && /* @__PURE__ */ React.createElement(FirstRun, { T, onClose: () => {
+  } }, narr)), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 2 } }), phase !== "ending" && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(WarmSlider, { phase, minutes, setMinutes, frac, accent, stepMs, T }), phase === "standby" ? /* @__PURE__ */ React.createElement("button", { onClick: begin, className: "wk-btn", style: { "--accent": accent, background: accent, color: "#fff", borderColor: "transparent", marginTop: 18 } }, /* @__PURE__ */ React.createElement(FlameIcon, null), T.start) : /* @__PURE__ */ React.createElement("button", { onClick: halt, className: "wk-btn", style: { "--accent": accent, background: "transparent", color: "#9A6A45", borderColor: "rgba(154,106,69,0.4)", marginTop: 18 } }, /* @__PURE__ */ React.createElement("span", { className: "wk-pulse", style: { background: accent } }), T.stop), /* @__PURE__ */ React.createElement("div", { style: { minHeight: 30, marginTop: 11, flexShrink: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", fontFamily: "'PingFang SC', system-ui", fontSize: 11, color: "#B08A60", textAlign: "center", textWrap: "pretty" } }, phase === "standby" ? T.footnote : "")), phase === "ending" && /* @__PURE__ */ React.createElement("button", { onClick: restart, className: "wk-btn", style: { "--accent": accent, background: accent, color: "#fff", borderColor: "transparent" } }, /* @__PURE__ */ React.createElement(PawIcon, null), T.restart)), /* @__PURE__ */ React.createElement(
+    SettingsPage,
+    {
+      open: settingsOpen,
+      onClose: () => setSettingsOpen(false),
+      lang,
+      setLang,
+      T,
+      version,
+      chime,
+      setChime,
+      ambient,
+      setAmbient,
+      launchAtLogin,
+      setLaunchAtLogin,
+      autoUpdate,
+      setAutoUpdate,
+      checkUpdates
+    }
+  ), firstRun && /* @__PURE__ */ React.createElement(FirstRun, { T, onClose: () => {
     setFirstRun(false);
     localStorage.setItem("wk_seen_v2", "1");
   }, accent }));

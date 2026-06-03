@@ -36,6 +36,10 @@ const WK_I18N = {
     sound: '声音',
     chimeOption: '完成提示音',
     ambientOption: '暖手环境音',
+    general: '通用',
+    launchAtLogin: '开机自动启动',
+    autoUpdate: '自动检查更新',
+    checkNow: '检查更新',
     firstTitle: '欢迎来到 Warm Kitty',
     firstBody: '我会让电脑轻轻发点热，帮你焐暖一双小手。选个时长就开始，时间一到自动停下。',
     firstBtn: '好的，开始吧',
@@ -74,6 +78,10 @@ const WK_I18N = {
     sound: 'Sound',
     chimeOption: 'Completion chime',
     ambientOption: 'Warming ambience',
+    general: 'General',
+    launchAtLogin: 'Launch at login',
+    autoUpdate: 'Check for updates automatically',
+    checkNow: 'Check now',
     firstTitle: 'Welcome to Warm Kitty',
     firstBody: 'I gently warm your laptop to toast your hands. Pick a time, tap start, and I stop on my own when it runs out.',
     firstBtn: 'Got it, let’s go',
@@ -112,6 +120,10 @@ const WK_I18N = {
     sound: 'サウンド',
     chimeOption: '完了の音',
     ambientOption: '暖めの環境音',
+    general: '一般',
+    launchAtLogin: 'ログイン時に起動',
+    autoUpdate: '自動的に更新を確認',
+    checkNow: '今すぐ確認',
     firstTitle: 'Warm Kitty へようこそ',
     firstBody: 'PCをほんのり発熱させて、手をぬくぬくにします。時間を選んで開始、0になったら自動で止まります。',
     firstBtn: 'はじめる',
@@ -150,6 +162,10 @@ const WK_I18N = {
     sound: '聲音',
     chimeOption: '完成提示音',
     ambientOption: '暖手環境音',
+    general: '一般',
+    launchAtLogin: '開機自動啟動',
+    autoUpdate: '自動檢查更新',
+    checkNow: '檢查更新',
     firstTitle: '歡迎來到 Warm Kitty',
     firstBody: '我會讓電腦輕輕發點熱，幫你焐暖一雙小手。選個時長就開始，時間一到自動停下。',
     firstBtn: '好的，開始吧',
@@ -302,6 +318,20 @@ function SoundRow({ label, on, onChange, last }) {
     </div>
   );
 }
+function ButtonRow({ label, buttonLabel, onClick, last }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', padding: '13px 15px',
+      borderBottom: last ? 'none' : '0.5px solid rgba(120,78,40,0.08)' }}>
+      <span style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 14, fontWeight: 600, color: '#5E4630' }}>{label}</span>
+      <button onClick={onClick} style={{
+        marginLeft: 'auto', border: '0.5px solid rgba(120,78,40,0.18)', background: '#fff',
+        borderRadius: 9, cursor: 'pointer', padding: '6px 12px',
+        fontFamily: "'PingFang SC', system-ui", fontSize: 13, fontWeight: 600, color: '#C2703C' }}>
+        {buttonLabel}
+      </button>
+    </div>
+  );
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // settings2 — gear button + sliding settings page (language + about).
@@ -373,7 +403,8 @@ function AppIcon({ size = 88 }) {
   );
 }
 
-function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChime, ambient, setAmbient }) {
+function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChime, ambient, setAmbient,
+  launchAtLogin, setLaunchAtLogin, autoUpdate, setAutoUpdate, checkUpdates }) {
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: open ? 'auto' : 'none' }}>
       <div onClick={onClose} style={{
@@ -417,6 +448,13 @@ function SettingsPage({ open, onClose, lang, setLang, T, version, chime, setChim
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
               <path d="M6 9l6 6 6-6" stroke="#B08A60" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+          </div>
+
+          <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10 }}>{T.general}</div>
+          <div style={{ marginBottom: 28, borderRadius: 14, background: '#fff', border: '0.5px solid rgba(120,78,40,0.1)', overflow: 'hidden' }}>
+            <SoundRow label={T.launchAtLogin} on={launchAtLogin} onChange={setLaunchAtLogin} />
+            <SoundRow label={T.autoUpdate} on={autoUpdate} onChange={setAutoUpdate} />
+            <ButtonRow label={`${T.version} ${version}`} buttonLabel={T.checkNow} onClick={checkUpdates} last />
           </div>
 
           <div style={{ fontFamily: "'PingFang SC', system-ui", fontSize: 12, fontWeight: 700, color: '#B08A60', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 10 }}>{T.sound}</div>
@@ -472,6 +510,11 @@ function App() {
   const [ambient, setAmbState] = React.useState(() => localStorage.getItem('wk_ambient') === '1'); // default off
   const setChime = (v) => { setChimeState(v); localStorage.setItem('wk_chime', v ? '1' : '0'); };
   const setAmbient = (v) => { setAmbState(v); localStorage.setItem('wk_ambient', v ? '1' : '0'); };
+  const [launchAtLogin, setLaunchAtLoginState] = React.useState(false);
+  const [autoUpdate, setAutoUpdateState] = React.useState(true);
+  const setLaunchAtLogin = (v) => { setLaunchAtLoginState(v); post({ type: 'setLaunchAtLogin', enabled: v }); };
+  const setAutoUpdate = (v) => { setAutoUpdateState(v); post({ type: 'setAutoUpdate', enabled: v }); };
+  const checkUpdates = () => post({ type: 'checkForUpdates' });
   const chimeRef = React.useRef(chime); chimeRef.current = chime;
   const T = WK_I18N[lang] || WK_I18N.zh;
 
@@ -492,6 +535,8 @@ function App() {
     window.warmkitty.onRunning = () => {};
     window.warmkitty.onDone = () => setPhase('ending');
     window.warmkitty.onVersion = (v) => setVersion(v);
+    window.warmkitty.onLaunchAtLogin = (v) => setLaunchAtLoginState(v);
+    window.warmkitty.onAutoUpdate = (v) => setAutoUpdateState(v);
     post({ type: 'ready' });
   }, []);
 
@@ -589,7 +634,8 @@ function App() {
         )}
       </div>
 
-      <SettingsPage open={settingsOpen} onClose={() => setSettingsOpen(false)} lang={lang} setLang={setLang} T={T} version={version} chime={chime} setChime={setChime} ambient={ambient} setAmbient={setAmbient} />
+      <SettingsPage open={settingsOpen} onClose={() => setSettingsOpen(false)} lang={lang} setLang={setLang} T={T} version={version} chime={chime} setChime={setChime} ambient={ambient} setAmbient={setAmbient}
+        launchAtLogin={launchAtLogin} setLaunchAtLogin={setLaunchAtLogin} autoUpdate={autoUpdate} setAutoUpdate={setAutoUpdate} checkUpdates={checkUpdates} />
       {firstRun && <FirstRun T={T} onClose={() => { setFirstRun(false); localStorage.setItem('wk_seen_v2', '1'); }} accent={accent} />}
     </div>
   );
