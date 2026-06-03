@@ -39,5 +39,7 @@
 	<string>https://barrybarrywu.github.io/warm-kitty/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>U5zsE0GWcUaEiLVmElG9M+R8w5ujkE/ZeshR/v5nQAE=</string>
+	<key>ATSApplicationFontsPath</key>
+	<string>Fonts</string>
 </dict>
 </plist>

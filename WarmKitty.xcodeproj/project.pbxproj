@@ -7,31 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E47655F8F30C4F6972399FA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AAE93A1A7AEF4586D772E390 /* Fonts */; };
 		7BE76BFB2A08796CCB8F7E83 /* WarmKittyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */; };
 		7F878CD9C4C12E543E126029 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */; };
 		84A193FC6115503AEA212CD6 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 385785BFBDE77ADB31824B19 /* Sparkle */; };
 		A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4500F2209A4EAB48CFB8608 /* Assets.xcassets */; };
-		B2B1EC9E5A078A0703E0592E /* web in Resources */ = {isa = PBXBuildFile; fileRef = 953665894F0A316525B72F43 /* web */; };
 		C154EAA272B5B025AA17B53C /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9496F5893E72FFDFE72CF8 /* Bridge.swift */; };
 		C8DD5C2A07786CC9EB03934E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6549A4DE56F0D546B28629 /* main.swift */; };
 		D22976178D0F743AC841686C /* HeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */; };
 		D32D324450550662865077C2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAC1F68526529DA47EB82D /* WebView.swift */; };
 		DF02D176D355E5037B28D4C4 /* GPUHeatingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */; };
 		F5A3B8EB27ACA4632C0604DE /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */; };
+		F834D4D36FC0DFDD2627A8B0 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = 3577C932323C71CDD66E9C71 /* Audio */; };
+		F8908288A70C10121143637A /* _PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C3FF28885EB3EB1628924F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28E422B7DA1804B7DF88925E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6160D1D1D7443E65590CF307;
+			remoteInfo = WarmKitty;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _PlaceholderTests.swift; sourceTree = "<group>"; };
 		2EFAC1F68526529DA47EB82D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		3577C932323C71CDD66E9C71 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = Resources/Audio; sourceTree = SOURCE_ROOT; };
 		3F9496F5893E72FFDFE72CF8 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		7A8F2F6B053887A12F2BC76D /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		865B0FD4040D8C6A5D217A66 /* WarmKitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarmKitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6549A4DE56F0D546B28629 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		953665894F0A316525B72F43 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Resources/web; sourceTree = SOURCE_ROOT; };
+		AAE93A1A7AEF4586D772E390 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = Resources/Fonts; sourceTree = SOURCE_ROOT; };
 		B718EC76F78FEBEC6B7B8CFF /* HeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatingEngine.swift; sourceTree = "<group>"; };
 		C4CE733A02B522EB25E6406D /* GPUHeatingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUHeatingEngine.swift; sourceTree = "<group>"; };
 		CE1FE93FE43EC8896345A3E5 /* WarmKittyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmKittyApp.swift; sourceTree = "<group>"; };
 		D4500F2209A4EAB48CFB8608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC6CA4FDFF0460DE6BBC8410 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
+		E226C3250B40C44E83B73DE5 /* WarmKittyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarmKittyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +61,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24860724F066D70264D483B3 /* WarmKittyTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B12C5316D8F88BD2EF6B353 /* _PlaceholderTests.swift */,
+			);
+			path = WarmKittyTests;
+			sourceTree = "<group>";
+		};
 		762E32FDBB878CA1857CFAB2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				865B0FD4040D8C6A5D217A66 /* WarmKitty.app */,
+				E226C3250B40C44E83B73DE5 /* WarmKittyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,7 +81,8 @@
 		87C08CBAC4D1D1AC7E4F2C9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				953665894F0A316525B72F43 /* web */,
+				3577C932323C71CDD66E9C71 /* Audio */,
+				AAE93A1A7AEF4586D772E390 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -68,6 +93,7 @@
 				D4500F2209A4EAB48CFB8608 /* Assets.xcassets */,
 				87C08CBAC4D1D1AC7E4F2C9F /* Resources */,
 				E969236EF0921552EBC18F58 /* Sources */,
+				24860724F066D70264D483B3 /* WarmKittyTests */,
 				762E32FDBB878CA1857CFAB2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +116,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		00F74F0ADC4A288E173850FE /* WarmKittyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 945E6529D3823275A2C375FD /* Build configuration list for PBXNativeTarget "WarmKittyTests" */;
+			buildPhases = (
+				9257802FE5A4249530550318 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64621C53722EB10407211211 /* PBXTargetDependency */,
+			);
+			name = WarmKittyTests;
+			packageProductDependencies = (
+			);
+			productName = WarmKittyTests;
+			productReference = E226C3250B40C44E83B73DE5 /* WarmKittyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6160D1D1D7443E65590CF307 /* WarmKitty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0599CAB74CF4B3ADBF8CB13 /* Build configuration list for PBXNativeTarget "WarmKitty" */;
@@ -139,6 +183,7 @@
 			projectRoot = "";
 			targets = (
 				6160D1D1D7443E65590CF307 /* WarmKitty */,
+				00F74F0ADC4A288E173850FE /* WarmKittyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -149,7 +194,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7F87059437A8B5DC992D746 /* Assets.xcassets in Resources */,
-				B2B1EC9E5A078A0703E0592E /* web in Resources */,
+				F834D4D36FC0DFDD2627A8B0 /* Audio in Resources */,
+				6E47655F8F30C4F6972399FA /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,9 +217,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9257802FE5A4249530550318 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8908288A70C10121143637A /* _PlaceholderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		64621C53722EB10407211211 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6160D1D1D7443E65590CF307 /* WarmKitty */;
+			targetProxy = C3FF28885EB3EB1628924F46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2C11E9145065C5378FA0B537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.WarmKittyTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WarmKitty.app/Contents/MacOS/WarmKitty";
+			};
+			name = Debug;
+		};
 		2F788652F41FC4CF02A4BBDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -268,6 +347,23 @@
 			};
 			name = Debug;
 		};
+		A7CAE80493458BB200BE27AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.barrybarrywu.WarmKittyTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WarmKitty.app/Contents/MacOS/WarmKitty";
+			};
+			name = Release;
+		};
 		BA1F0C6A896F54DF68BE2092 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -334,6 +430,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		945E6529D3823275A2C375FD /* Build configuration list for PBXNativeTarget "WarmKittyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C11E9145065C5378FA0B537 /* Debug */,
+				A7CAE80493458BB200BE27AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		A0599CAB74CF4B3ADBF8CB13 /* Build configuration list for PBXNativeTarget "WarmKitty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

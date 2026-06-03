@@ -16,9 +16,11 @@ targets:
     platform: macOS
     sources:
       - path: Sources
-      - path: Resources/web
-        type: folder
       - path: Assets.xcassets
+      - path: Resources/Audio
+        type: folder
+      - path: Resources/Fonts
+        type: folder
     dependencies:
       - package: Sparkle
     settings:
@@ -30,3 +32,13 @@ targets:
         INFOPLIST_FILE: Info.plist
         ENABLE_HARDENED_RUNTIME: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  WarmKittyTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: WarmKittyTests
+    dependencies:
+      - target: WarmKitty
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
