@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Color {
-    /// #RRGGBB (and optional alpha) → Color, matching the web hex values.
+    /// #RRGGBB → Color, matching the web hex values; opacity via the `alpha` arg.
     init(hex: String, alpha: Double = 1) {
         let s = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
         let n = UInt64(s, radix: 16) ?? 0

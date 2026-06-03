@@ -64,6 +64,10 @@ struct RootView: View {
             if p == .warming { narrIdx = 0 }
             if p == .warming && settings.ambient { audio.startAmbient() } else { audio.stopAmbient() }
         }
+        .onChange(of: settings.ambient) { on in
+            guard session.phase == .warming else { return }
+            if on { audio.startAmbient() } else { audio.stopAmbient() }
+        }
     }
 
     private var titleBar: some View {

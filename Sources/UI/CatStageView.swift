@@ -12,6 +12,7 @@ struct CatStageView: View {
     @State private var active = "idle"
     @State private var playlist: [String] = []
     @State private var cursor = 0
+    @State private var lastStep = 0
     @State private var sway = false
 
     var body: some View {
@@ -32,8 +33,9 @@ struct CatStageView: View {
         // so the pose loop doesn't depend on a timer that the per-second re-render
         // would otherwise keep resetting.
         .onChange(of: elapsed) { e in
-            guard phase == .warming, e > 0, e % holdSeconds == 0 else { return }
-            advance()
+            guard phase == .warming else { return }
+            let step = e / holdSeconds      // monotonic; survives a skipped second
+            while lastStep < step { lastStep += 1; advance() }
         }
     }
 
@@ -49,6 +51,7 @@ struct CatStageView: View {
             withAnimation(.easeInOut(duration: 2.1).repeatForever(autoreverses: true)) { sway = true }
             playlist = warmPoses.shuffled()
             cursor = 0
+            lastStep = 0
             active = playlist[0]
             onPoseChange(0)
         }

@@ -7,6 +7,7 @@ final class AudioController {
     private var amb: AVAudioPlayer?
     private var lfo: Timer?
     private var phase: Double = 0
+    private var stopWork: DispatchWorkItem?
 
     init() {
         if let u = Self.url("chime") {
@@ -30,10 +31,11 @@ final class AudioController {
     func playChime() { chime?.currentTime = 0; chime?.play() }
 
     func startAmbient() {
-        guard let amb, !amb.isPlaying else { return }
-        amb.volume = 0
-        amb.play()
+        guard let amb else { return }
+        stopWork?.cancel(); stopWork = nil      // cancel a pending fade-out stop
+        if !amb.isPlaying { amb.volume = 0; amb.play() }
         amb.setVolume(0.06, fadeDuration: 1.2)   // fade in, matches old ramp
+        guard lfo == nil else { return }
         phase = 0
         lfo = Timer.scheduledTimer(withTimeInterval: 1.0 / 30.0, repeats: true) { [weak self] _ in
             guard let self, let amb = self.amb else { return }
@@ -45,6 +47,8 @@ final class AudioController {
     func stopAmbient() {
         lfo?.invalidate(); lfo = nil
         amb?.setVolume(0, fadeDuration: 0.6)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) { [weak self] in self?.amb?.stop() }
+        let work = DispatchWorkItem { [weak self] in self?.amb?.stop() }
+        stopWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65, execute: work)
     }
 }

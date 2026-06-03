@@ -17,8 +17,6 @@ final class UpdateChecker: NSObject {
             userDriverDelegate: nil
         )
         super.init()
-        let enabled = (UserDefaults.standard.object(forKey: "autoCheckUpdates") as? Bool) ?? true
-        controller.updater.automaticallyChecksForUpdates = enabled
     }
 
     var currentVersion: String {
@@ -30,7 +28,6 @@ final class UpdateChecker: NSObject {
     }
 
     func setAutoCheck(_ enabled: Bool) {
-        UserDefaults.standard.set(enabled, forKey: "autoCheckUpdates")
         controller.updater.automaticallyChecksForUpdates = enabled
     }
 
@@ -42,7 +39,13 @@ final class UpdateChecker: NSObject {
 import ServiceManagement
 
 extension UpdateChecker {
-    var launchAtLogin: Bool { SMAppService.mainApp.status == .enabled }
+    /// `.requiresApproval` means the user enabled it but macOS is waiting for
+    /// confirmation in System Settings — still reflects the user's intent, so the
+    /// toggle should read on rather than snapping back off.
+    var launchAtLogin: Bool {
+        let status = SMAppService.mainApp.status
+        return status == .enabled || status == .requiresApproval
+    }
 
     func setLaunchAtLogin(_ enabled: Bool) {
         do {
@@ -50,6 +53,9 @@ extension UpdateChecker {
             else { try SMAppService.mainApp.unregister() }
         } catch {
             NSLog("WarmKitty: launch-at-login change failed: \(error.localizedDescription)")
+        }
+        if enabled, SMAppService.mainApp.status == .requiresApproval {
+            SMAppService.openSystemSettingsLoginItems()
         }
     }
 }
