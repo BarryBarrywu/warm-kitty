@@ -52,6 +52,7 @@ struct LinkRow: View {
                 Image(systemName: "chevron.right").foregroundColor(Color(hex: "C9AE92")).font(.system(size: 11, weight: .bold))
             }
             .padding(.horizontal, 15).padding(.vertical, 13)
+            .contentShape(Rectangle())
         }.buttonStyle(.plain).overlay(rowDivider(last), alignment: .bottom)
     }
 }

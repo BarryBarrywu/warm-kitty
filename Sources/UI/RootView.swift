@@ -98,7 +98,9 @@ struct RootView: View {
 
     private var mainColumn: some View {
         VStack(spacing: 0) {
-            CatStageView(phase: session.phase, holdSeconds: 8) { narrIdx = $0 }
+            CatStageView(phase: session.phase,
+                         elapsed: max(0, session.total - session.remaining),
+                         holdSeconds: 8) { narrIdx = $0 }
                 .frame(width: 256, height: 256)
                 .padding(.top, 2)
             ReadoutView(phase: session.phase, minutes: settings.minutes,
@@ -143,6 +145,7 @@ struct RootView: View {
                 .overlay(RoundedRectangle(cornerRadius: 20)
                     .stroke(filled ? Color.clear : Color(hex: "9A6A45", alpha: 0.4), lineWidth: 2))
                 .cornerRadius(20)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }

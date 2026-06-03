@@ -9,15 +9,22 @@ final class AudioController {
     private var phase: Double = 0
 
     init() {
-        if let u = Bundle.main.url(forResource: "chime", withExtension: "caf") {
+        if let u = Self.url("chime") {
             chime = try? AVAudioPlayer(contentsOf: u)
             chime?.prepareToPlay()
         }
-        if let u = Bundle.main.url(forResource: "ambient", withExtension: "caf") {
+        if let u = Self.url("ambient") {
             amb = try? AVAudioPlayer(contentsOf: u)
             amb?.numberOfLoops = -1
             amb?.prepareToPlay()
         }
+    }
+
+    /// The .caf files ship inside the bundle's `Audio/` folder reference, so look
+    /// there first and fall back to the Resources root.
+    private static func url(_ name: String) -> URL? {
+        Bundle.main.url(forResource: name, withExtension: "caf", subdirectory: "Audio")
+            ?? Bundle.main.url(forResource: name, withExtension: "caf")
     }
 
     func playChime() { chime?.currentTime = 0; chime?.play() }

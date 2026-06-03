@@ -5,14 +5,14 @@ private let idlePose = "idle", endingPose = "ending"
 
 struct CatStageView: View {
     let phase: WarmPhase
-    let holdSeconds: Double      // 8
+    let elapsed: Int             // seconds since warming began (total - remaining)
+    let holdSeconds: Int         // 8 — advance the pose every N seconds
     var onPoseChange: (Int) -> Void
 
     @State private var active = "idle"
     @State private var playlist: [String] = []
     @State private var cursor = 0
     @State private var sway = false
-    @State private var timer: Timer?
 
     var body: some View {
         ZStack {
@@ -28,29 +28,39 @@ struct CatStageView: View {
         .scaleEffect(sway ? 1.018 : 1.0, anchor: UnitPoint(x: 0.5, y: 0.78))
         .onChange(of: phase) { _ in applyPhase() }
         .onAppear { applyPhase() }
+        // The countdown already updates `elapsed` every second; use it as the clock
+        // so the pose loop doesn't depend on a timer that the per-second re-render
+        // would otherwise keep resetting.
+        .onChange(of: elapsed) { e in
+            guard phase == .warming, e > 0, e % holdSeconds == 0 else { return }
+            advance()
+        }
     }
 
     private func applyPhase() {
-        timer?.invalidate(); timer = nil
         switch phase {
         case .standby:
-            withAnimation(nil) { sway = false }
+            sway = false
             active = idlePose
         case .ending:
             sway = false
             active = endingPose
         case .warming:
             withAnimation(.easeInOut(duration: 2.1).repeatForever(autoreverses: true)) { sway = true }
-            playlist = warmPoses.shuffled(); cursor = 0
-            active = playlist[0]; onPoseChange(0)
-            let t = Timer(timeInterval: holdSeconds, repeats: true) { _ in advance() }
-            RunLoop.main.add(t, forMode: .common); timer = t
+            playlist = warmPoses.shuffled()
+            cursor = 0
+            active = playlist[0]
+            onPoseChange(0)
         }
     }
 
     private func advance() {
         cursor += 1
-        if cursor >= playlist.count { playlist = warmPoses.shuffled(); cursor = 0 }
-        active = playlist[cursor]; onPoseChange(cursor)
+        if cursor >= playlist.count {
+            playlist = warmPoses.shuffled()
+            cursor = 0
+        }
+        active = playlist[cursor]
+        onPoseChange(cursor)
     }
 }

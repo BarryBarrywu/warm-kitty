@@ -26,15 +26,28 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         sectionHeader(L("language", code))
                         SettingsCard {
-                            let langBinding = Binding<String>(
-                                get: { locale.selection },
-                                set: { locale.set($0); settings.language = $0 })
-                            Picker("", selection: langBinding) {
+                            let current = langs.first { $0.0 == locale.selection }
+                            let currentName = current?.0 == "auto" ? L("autoLang", code) : (current?.1 ?? "")
+                            Menu {
                                 ForEach(langs, id: \.0) { c, name in
-                                    Text(c == "auto" ? L("autoLang", code) : name).tag(c)
+                                    Button(c == "auto" ? L("autoLang", code) : name) {
+                                        locale.set(c); settings.language = c
+                                    }
                                 }
+                            } label: {
+                                HStack {
+                                    Text(currentName)
+                                        .font(.custom("PingFang SC", size: 14)).fontWeight(.semibold)
+                                        .foregroundColor(Color(hex: "5E4630"))
+                                    Spacer()
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .font(.system(size: 12, weight: .semibold))
+                                        .foregroundColor(Color(hex: "B08A60"))
+                                }
+                                .padding(.horizontal, 15).padding(.vertical, 13)
+                                .contentShape(Rectangle())
                             }
-                            .labelsHidden().pickerStyle(.menu).padding(12)
+                            .buttonStyle(.plain)
                         }
 
                         sectionHeader(L("sound", code))
@@ -90,7 +103,7 @@ struct SettingsView: View {
             Image("AppIconImage").resizable().scaledToFit().frame(width: 88, height: 88)
                 .shadow(color: Color(hex: "E08A4B", alpha: 0.6), radius: 10, y: 8)
             Text("Warm Kitty").font(.custom("ZCOOL KuaiLe", size: 22)).foregroundColor(Color(hex: "5E4630"))
-            Text("\u{201C}\(L("slogan", code))\u{201D}")
+            Text(L("slogan", code))
                 .font(.custom("Baloo 2", size: 15)).modifier(ConditionalItalic(on: code == "en"))
                 .foregroundColor(Color(hex: "C2703C")).multilineTextAlignment(.center).frame(maxWidth: 240)
             VStack(spacing: 0) {
