@@ -11,6 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var window: NSWindow!
     private let session = SessionController()
     private var bridge: Bridge?
+    private var updateChecker: UpdateChecker?
 
     private let winSize = NSSize(width: 444, height: 690)
     private let titleBarHeight: CGFloat = 46
@@ -18,7 +19,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let rightControlWidth: CGFloat = 64  // leave the HTML gear / Done button clickable
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let (web, bridge) = makeWarmKittyWebView(session: session)
+        let updateChecker = UpdateChecker()
+        self.updateChecker = updateChecker
+        let (web, bridge) = makeWarmKittyWebView(session: session, updateChecker: updateChecker)
         self.bridge = bridge
 
         let container = NSView(frame: NSRect(origin: .zero, size: winSize))

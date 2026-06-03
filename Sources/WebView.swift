@@ -13,8 +13,8 @@ final class DragStrip: NSView {
 }
 
 /// Builds the configured web view + bridge that loads the bundled design.
-func makeWarmKittyWebView(session: SessionController) -> (WKWebView, Bridge) {
-    let bridge = Bridge(session: session)
+func makeWarmKittyWebView(session: SessionController, updateChecker: UpdateChecker) -> (WKWebView, Bridge) {
+    let bridge = Bridge(session: session, updateChecker: updateChecker)
     let config = WKWebViewConfiguration()
     config.userContentController.add(bridge, name: "bridge")
 

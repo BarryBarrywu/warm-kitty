@@ -1,15 +1,18 @@
 import AppKit
 import WebKit
+import ServiceManagement
 
 /// Connects the web UI and the native session: forwards page actions
 /// (start/stop/window/openURL) to the SessionController, and pushes the
 /// countdown tick, running state, and done event back into the page.
 final class Bridge: NSObject, WKScriptMessageHandler {
     private let session: SessionController
+    private let updateChecker: UpdateChecker
     weak var webView: WKWebView?
 
-    init(session: SessionController) {
+    init(session: SessionController, updateChecker: UpdateChecker) {
         self.session = session
+        self.updateChecker = updateChecker
         super.init()
 
         session.onTick = { [weak self] remaining, total in
@@ -31,6 +34,17 @@ final class Bridge: NSObject, WKScriptMessageHandler {
         case "ready":
             let v = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
             eval("window.warmkitty && warmkitty.onVersion('\(v)')")
+            pushLaunchAtLogin()
+            pushAutoUpdate()
+        case "setLaunchAtLogin":
+            let enabled = (body["enabled"] as? NSNumber)?.boolValue ?? false
+            setLaunchAtLogin(enabled)
+        case "setAutoUpdate":
+            let enabled = (body["enabled"] as? NSNumber)?.boolValue ?? true
+            updateChecker.setAutoCheck(enabled)
+            pushAutoUpdate()
+        case "checkForUpdates":
+            updateChecker.checkForUpdates()
         case "start":
             let minutes = (body["minutes"] as? NSNumber)?.intValue ?? 5
             session.start(minutes: minutes)
@@ -54,6 +68,28 @@ final class Bridge: NSObject, WKScriptMessageHandler {
         case "zoom": win?.zoom(nil)
         default: break
         }
+    }
+
+    private func setLaunchAtLogin(_ enabled: Bool) {
+        do {
+            if enabled {
+                try SMAppService.mainApp.register()
+            } else {
+                try SMAppService.mainApp.unregister()
+            }
+        } catch {
+            NSLog("WarmKitty: launch-at-login change failed: \(error.localizedDescription)")
+        }
+        pushLaunchAtLogin()
+    }
+
+    private func pushLaunchAtLogin() {
+        let on = SMAppService.mainApp.status == .enabled
+        eval("window.warmkitty && warmkitty.onLaunchAtLogin(\(on))")
+    }
+
+    private func pushAutoUpdate() {
+        eval("window.warmkitty && warmkitty.onAutoUpdate(\(updateChecker.autoCheckEnabled))")
     }
 
     private func eval(_ js: String) {
