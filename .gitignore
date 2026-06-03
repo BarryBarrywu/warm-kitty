@@ -1,5 +1,8 @@
 .DS_Store
 
+# Stray AI-generated scratch images
+ChatGPT Image*
+
 # Design handoff originals (large; not needed to build)
 warm-kitty-design/
 
